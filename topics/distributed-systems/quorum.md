@@ -1,0 +1,11 @@
+## Quorum in Distributed Databases
+- **Quorum** = Minimum number of nodes that must agree for an operation to succeed.  
+- Typically defined with:  
+  - `R` = number of replicas required for a read.  
+  - `W` = number of replicas required for a write.  
+  - `N` = total replicas.  
+- Rule of thumb: if **R + W > N**, then reads and writes overlap → ensures **strong consistency**.  
+- Trade-offs:  
+  - Larger `R` → more consistent reads, but slower.  
+  - Larger `W` → stronger write guarantees, but slower.  
+  - Smaller values → better performance, but weaker consistency.  

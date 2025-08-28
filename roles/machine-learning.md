@@ -9,7 +9,7 @@
 ## Fundamentals
 - [[machine-learning/transformers-attention]]
 - [[data-engineering/kafka-fundamentals]] (for online features)
-- [[databases/indexes]] (retrieval basics)
+- [[indexes]] (retrieval basics)
 
 ## Serving & MLOps
 - [[machine-learning/model-serving-architectures]]

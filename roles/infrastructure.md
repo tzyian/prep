@@ -8,8 +8,8 @@
 
 ## Core
 - [[infrastructure/kubernetes-basics]] · [[infrastructure/observability-stack]]
-- [[web-security/tls-handshake]] · [[web-security/oauth2]] (service access)
-- [[distributed-systems/gossip-protocols]] (membership)
+- [[tls-handshake]] · [[oauth2 1]] (service access)
+- [[gossip-protocols]] (membership)
 
 ## Systems & Networking
 - [[os-concurrency/epoll-io-uring]]

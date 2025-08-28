@@ -1,4 +1,4 @@
-Distributed Systems (Kleppmann)
+## Distributed Systems (Kleppmann)
 https://www.cl.cam.ac.uk/teaching/2021/ConcDisSys/dist-sys-notes.pdf
 https://www.youtube.com/playlist?list=PLeKd45zvjcDFUEv_ohr_HdUFe97RItdiB
 
@@ -48,61 +48,22 @@ Replica Consistency
 Linearizability
 Eventual Consistency
 
-Web Security
-What is Oauth2?
-
-How browser encrypts traffic?
-
-TLS Handshake
 
 
 
 
-
-
-
-
-
-
-At least Once
-2 Generals/ Byzantine Generals Problem
-Lamport Time, Vector Time
-RAFT algorithm, Paxos algorithm
-Cache coherence models
-Consistency model
-ACID
-CAP
-Gossip Protocols
-Broadcast Protocol
-2 Phase Commit
-2 Phase Locking
-How cdn work
-
-
-
-Web
-
+##  Devops
 caching, content distribution, processes & threads & cores, etc
 
-Consistency models
-Cache coherence
 
 https://github.com/bregman-arie/devops-exercises/tree/master?tab=readme-ov-file
 
-False sharing
-
-
-
-
-
-CAP consistency vs ACID consistency
 
 
 
 https://www.ardanlabs.com/blog/2018/12/scheduling-in-go-part3.html
 
-
-cs2100 computer organisation
+### cs2100 computer organisation
 iee754 decimal
 storage architectures
 endianness
@@ -115,24 +76,18 @@ direct mapped cache
 cache misses (compulsory, conflict miss)
 cache type: (write-through, write-back)
 
-cs2102 database
+### cs2102 database
 ACID
-
-make a sql cheatsheet with the whole create, alter table, column, type, default, drop, numeric, drop constraint,, alter constraint, delete table, drop cascade, update values
-sql cheatsheet with common commands, include CTE, views, triggers, deferred triggers, functions, select distinct, conditionals, nullif group by, aggregate, coalesce, check, deferred constraints, 
-inner, outer join, 
-common types of nested sql questions 
-FK, PK, include syntax
 BCNF, 3NF
 
 
-cs2109 classical AI
+### cs2109 classical AI
 hill climbing, A*, heuristics, minimax
 
-cs2103 swe
+### cs2103 swe
 how to ensure exhaustive tests eg equivalence partitions, boundary value, 
 
-cs2106 operating systems
+### cs2106 operating systems
 VM, microkernel, container, processes, pages, deadlocks, syscalls, traps, exceptions, interrupts, scheduling algorithms (round robin, fcfs, priority scheduling, MLFQ)
 multithreading, user threads, system threads, SIMD, shared memory, Send and receive
 mutex, semaphore, condvars
@@ -140,7 +95,8 @@ producer-consumer, reader-writer, barriers
 virtual memory, paging schemes (demand paging, direct paging, 2 level paging, inverted page tables)
 file descriptors, vtable, file ttable, vnodetable
 
-CS3223 Database Implementation, MVCC, ARIES, 2PL, query optimisation
+### CS3223 Database Implementation
+, MVCC, ARIES, 2PL, query optimisation
 ACID thm
 DB tuning
 B+ trees, static hashing, linear hashing, extendible hasihing, page replacement policies
@@ -161,7 +117,7 @@ MVCC, mV view equiv, MV view serialisable
 snapshot isolation
 serialisable snapshot isolation
 
-CS4248
+### CS4248
 HMM
 POMDP
 tokenisation
@@ -187,20 +143,22 @@ diffusion
 VLLMs
 open world
 
-CS4243
+### CS4243
 YOLO, ViT, Dino
 Gabor filters
 tracking
 optical flow
 
 
-CS4225 Big Data
+### CS4225 Big Data
 spark internals
 hadoop
 flink
 alluxio internals
 
-CS3210 Parallel and Concurrent Programming, coherence, consistency, cuda, openmp,mpi, performance, monitoring, architecture, distributed systems
+### CS3210 Parallel and Concurrent Programming, 
+coherence, consistency, cuda, openmp,mpi, performance, monitoring, architecture, distributed systems
+numa, uma architectures
 pipelining, superscalar processing, task mapping and scheduling
 IPC
 exceptions, interrupts, threads (uyser, kernel-level)
@@ -229,63 +187,52 @@ cache tracking (snooping, directory-based)
 memory-consistency (sequential, TSO, weak ordering)
 
 
-CS3219 
+###  CS3219 
 microservices, event storming, CQRS, event sourcing, sagas
 K8s
-NGINX, ingress, egress, reverse proxy, API gateway, service registry, partitioning, sharding
+load balancer
+NGINX, ingress, egress, reverse proxy, API gateway, service registry and discovery, partitioning, sharding
 kafka internals 
 pubsub
 rabbitmq
+message queue at least-once, exactly-once
+- What are the trade-offs between monolithic and microservice architectures?
+- What are the different caching strategies (write-through, write-behind, cache-aside)?
+- - What is backpressure and how do systems handle it?
+- What is fan-out and fan-in in distributed task processing?
+coupling asnychronous, message queues
 
 
 
 
-CS2105  Networking
+### CS2105  Networking
 
-CS2107 Security
+### CS2107 Security
 
 
 
-atomic vars, test-and-set, compare-and-swap
 epoll (i know its sth about io but i cant rmb if i even learnt this)
 pipes and redirects
 mutexes semaphores condvars (i cant rmb jack abt condvars)
 
-Distributed
-CAP thm
-Paxos, zookeeper, etcd, raft, 
-
-AI
+### Devops 
 devops, grafana, kubernetes, docker, loki, prometheus, argo, flux, helm, kustomize,
 
-CS2107 Security
-How oauth2, oauth2 pkce works
+
 
 
 Goroutines sockets websockets
 He asked abt security and symm/asymm cryptography
 
 
-
-2 phase locking (i cant rmb shit)
-database indexes
-write ahead logs
-2 phase commits (it turns out i never learnt this)
-cache coherence
-false sharing
 C++ Memory model (idk what this is)
 paging
 race conditions
 message queues
 and of course it ends in implement lru cache
 
-Write a few paragraph on lang choice, mq choice, architecture choice, on everything i have esp 3219
-
-Oauth oidc pkce
-
 
 Fast io
-
 
 Io uring
 
@@ -293,19 +240,11 @@ Io uring
 
 Websocket security
 
-Pk encryption
 
 
 also only tangentially related but one really interesting thing to look up is structured concurrency https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/, which is implemented in Python most famously in trio (but sadly it has limited traction overall so I just use asyncio for convenience)
 
 
-
-Acid properties matter
-https://interviewprep.org/computer-science-interview-questions/
-
-
-
-Go recap how db pk and cascade work
 
 Websockets do run thru https, so they can be secured in the same way i think
 

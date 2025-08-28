@@ -12,8 +12,8 @@
 - [[data-engineering/exactly-once-semantics]]
 
 ## Storage & Consistency
-- [[distributed-systems/consistency-models]] · [[distributed-systems/cap-theorem]]
-- [[databases/transactions-isolation]] · [[databases/mvcc]]
+- [[consistency-models]] · [[cap-theorem]]
+- [[transactions-isolation]] · [[mvcc]]
 
 ## Reliability & Ops
 - [[infrastructure/observability-stack]]

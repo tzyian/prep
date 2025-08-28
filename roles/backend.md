@@ -9,16 +9,16 @@ High‑yield topics with concise Q&A and follow‑ups.
 - [[questions/backend/caching-strategies]]
 
 ## Core
-- [[distributed-systems/consistency-models]]
-- [[distributed-systems/cap-theorem]]
-- [[distributed-systems/raft]]
-- [[databases/transactions-isolation]]
-- [[databases/mvcc]]
-- [[databases/indexes]]
-- [[databases/wal]]
-- [[web/rest-vs-rpc]]
-- [[web/http-caching]]
-- [[web-security/tls-handshake]] · [[web-security/oauth2]]
+- [[consistency-models]]
+- [[cap-theorem]]
+- [[raft]]
+- [[transactions-isolation]]
+- [[mvcc]]
+- [[indexes]]
+- [[wal]]
+- [[rest-vs-rpc]]
+- [[http-caching]]
+- [[tls-handshake]] · [[oauth2 1]]
 
 ## Implementation
 - [[os-concurrency/processes-threads-cores]]

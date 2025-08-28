@@ -8,10 +8,10 @@ This vault organizes common interview Q&A for full‑stack, backend, data engine
 - Triage AI‑generated items: [[curation/vetting-guide]]
 
 ## Topics
-- Distributed systems: [[distributed-systems/raft]], [[distributed-systems/consistency-models]], [[distributed-systems/cap-theorem]], [[distributed-systems/lamport-time]], [[distributed-systems/two-phase-commit]], [[distributed-systems/gossip-protocols]]
-- Databases: [[databases/transactions-isolation]], [[databases/mvcc]], [[databases/indexes]], [[databases/wal]]
-- Web + Security: [[web/rest-vs-rpc]], [[web/http-caching]], [[web-security/index]], [[web/websockets-security]]
-- OS + Concurrency: [[os-concurrency/index]]
+- Distributed systems: [[raft]], [[consistency-models]], [[cap-theorem]], [[vector-logical-time]], [[two-phase-commit]], [[gossip-protocols]]
+- Databases: [[transactions-isolation]], [[mvcc]], [[indexes]], [[wal]]
+- Web + Security: [[rest-vs-rpc]], [[http-caching]], [[index]], [[websockets-security]]
+- OS + Concurrency: [[topics/os-concurrency/index]]
 - Data Eng + Infra + ML: [[data-engineering/hadoop-vs-spark]], [[data-engineering/kafka-fundamentals]], [[infrastructure/kubernetes-basics]], [[infrastructure/observability-stack]], [[machine-learning/transformers-attention]]
 
 Scratchpad: see [[curation/inbox]] for raw notes to curate.

@@ -1,0 +1,3 @@
+False sharing is a performance-degrading problem in multi-threaded systems where multiple processors or threads modify different pieces of data that happen to reside in the same CPU cache line.
+
+Although the threads don't actually access each other's data, the processor's cache coherence protocol invalidates the entire cache line when one thread writes to it, causing all other threads to fetch a new copy of the line from memory, leading to significant slowdowns.
