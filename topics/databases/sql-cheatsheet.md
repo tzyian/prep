@@ -12,7 +12,7 @@ Non-repeatable read: collection of rows returned by a query is different cos of 
 ## ACID
 - **Atomicity** → All or nothing.
 - **Consistency** → DB moves from one valid state to another.
-- **Isolation** → Transactions don’t interfere.
+- **Isolation** → Transactions don’t interfere with each other
 - **Durability** → Once committed, changes persist even after crash.
 
 ## CAP
@@ -359,7 +359,7 @@ WHERE r1.bib = i.rider;
 SELECT r.bib, r.name
 FROM riders r
 WHERE r.bib NOT IN (
-	SELECT rider i 
+	SELECT i.rider 
 	FROM results_individual i
 );
 

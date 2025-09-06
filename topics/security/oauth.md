@@ -57,3 +57,6 @@ PKCE protects public clients (SPAs, mobile) by proving possession of a secret de
 ![[auth-sequence-auth-code-pkce.png]]
 
 See also: [[oauth2]] · [[questions/fullstack/cookies-vs-token-auth]]
+
+who makes the access token
+what does the backend verify 
