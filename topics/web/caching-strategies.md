@@ -1,5 +1,11 @@
 # Question Card: Caching Strategies
 
+Cache aside  (lazy load)
+Read through (cache reads db)
+Write through (write to both cache and db)
+Write behind (cache async write to db)
+Write around (write to db, only fetch cache)
+
 - Question: Compare caching strategies (write-through, write-back, cache-aside). When to use which?
 - Role: backend
 - Difficulty: mid

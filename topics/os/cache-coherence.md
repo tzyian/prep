@@ -1,5 +1,7 @@
 ### Cache-Coherence Models
 
+Across the interconnects and sockets
+
 #### Background
 In multiprocessor systems, each CPU core may have its own cache.  
 **Cache coherence** ensures that all processors see a **consistent view of memory** when multiple caches store the same data.

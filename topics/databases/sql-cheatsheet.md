@@ -325,15 +325,16 @@ FROM employees;
 ```
 
 ```sql
-SELECT year, 
-	SUM(cost) AS cur_sales, 
-	LAG(SUM(cost)) OVER (
-		ORDER BY year ASC
-	) AS last_year_sales
-FROM orders
-GROUP BY year
+-- Year, current sales, last year sales
+SELECT year,
+       cur_sales,
+       LAG(cur_sales) OVER (ORDER BY year ASC) AS last_year_sales
+FROM (
+    SELECT year, SUM(cost) AS cur_sales
+    FROM orders
+    GROUP BY year
+) t
 ORDER BY year ASC;
-
 ```
 
 ## Equivalent SQL Functions

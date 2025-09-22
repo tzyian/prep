@@ -68,6 +68,17 @@
 | Context switch cost  | Very low                         | Higher (kernel mode switch)        | Medium                            |
 | Complexity           | Simple                           | Moderate                           | High                              |
 
+
+
+| Aspect        | Process                      | Thread (within process)        |
+|---------------|------------------------------|--------------------------------|
+| **Heap**      | Private (per process)        | Shared (all threads in process)|
+| **Stack**     | One per process (main thread) | One per thread (private)       |
+| **Isolation** | Heap/stack isolated by OS     | Heap shared, stacks private    |
+| **Access**    | Other processes need IPC      | Threads can access same heap   |
+
+---
+
 ---
 
 #### Analogy
