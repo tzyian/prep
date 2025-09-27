@@ -8,27 +8,17 @@ TLS provides:
 
 ---
 
+
 ## 2. TLS Handshake (Simplified)
 
-1. **ClientHello**
-   - Client sends supported TLS versions, cipher suites, random value.
+1. Server sends its **certificate** (contains its public key + CA signature).
+2. Browser checks the certificate chain back to a trusted CA.
+3. Browser uses the server’s **public key** to verify the TLS handshake (RSA/ECDHE).
+4. If valid, they agree on a **symmetric session key (AES)** for fast encrypted communication.
 
-2. **ServerHello**
-   - Server picks protocol version, cipher suite, sends its random value.
 
-3. **Certificate**
-   - Server sends its X.509 certificate (contains public key, domain name, CA signature).
 
-4. **Key Exchange**
-   - Client & server agree on a shared secret:
-     - RSA (older): Client encrypts session key with server’s public key.
-     - ECDHE (modern): Diffie-Hellman key exchange with server’s public key.
 
-5. **Symmetric Session Key Established**
-   - Both sides derive the same session key (from randoms + key exchange).
-
-6. **Finished**
-   - Both sides confirm and switch to symmetric encryption.
 
 ---
 
@@ -44,51 +34,13 @@ TLS certificates are **X.509** structures. Common fields:
   - Key Usage (signing, encryption).
 - **Signature**: CA’s digital signature over the certificate contents.
 
----
+A public key in a website needs to be certified so
+- **so we know this server is really example.com**
+- A certificate is validated by a trusted CA or a chain of trusted CA
+- Trusted CAs are cached in the browser/OS, 
+- The first CA is manually configured 
 
-## 4. Symmetric vs Asymmetric in TLS
 
-- **Asymmetric (Public/Private key crypto)**
-  - Used in handshake (authentication, key exchange).
-  - Example: RSA, ECDSA, ECDHE.
-  - Slow, so used only at the start.
-
-- **Symmetric (Shared secret crypto)**
-  - Used for bulk data encryption after handshake.
-  - Example: AES-GCM, ChaCha20-Poly1305.
-  - Fast, efficient for large traffic.
-
----
-
-## 5. TLS in Practice
-- **Asymmetric phase**: Establish trust + derive session key.
-- **Symmetric phase**: Encrypt/decrypt application data.
-- **MAC/AEAD**: Provide integrity (HMAC, or built into AES-GCM/ChaCha20).
-
----
-
-## 6. Example Flow (TLS 1.2 with RSA)
-1. Client → Server: Hello.
-2. Server → Client: Hello + Certificate (RSA public key).
-3. Client → Server: Generate random session key, encrypt with RSA pubkey, send.
-4. Server → Client: Decrypt with RSA private key, recover session key.
-5. Both sides: Switch to symmetric AES session key.
-
----
-
-## 7. Example Flow (TLS 1.3 with ECDHE)
-1. Client & Server exchange **ephemeral Diffie-Hellman keys**.
-2. Both compute same session key.
-3. Server proves identity with certificate + digital signature.
-4. Both switch to AES-GCM or ChaCha20.
-
----
-
-## 8. Key Points
-- Certificate = proves server identity, contains public key.  
-- Asymmetric crypto = handshake (authentication + key exchange).  
-- Symmetric crypto = actual data encryption (fast, efficient).  
-- TLS 1.3 simplified handshake, dropped RSA key transport in favor of ECDHE.  
 
 
 ```mermaid
@@ -116,3 +68,47 @@ sequenceDiagram
     S->>C: Application Data (encrypted)
 ```
 
+
+
+## 4. RSA, SHA, AES
+| Algorithm                  | Type                                | Purpose                                 | Where Used                                       | Notes                                                                                                 |
+| -------------------------- | ----------------------------------- | --------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| **RSA**                    | Asymmetric (public/private)         | Encryption, **Digital Signatures**      | JWT (RS256),<br><br>digital certs                | Strong but slower at large key sizes; 2048-bit common baseline                                        |
+| **ECDHE**                  | Asymmetric (elliptic curve)         | **Key Exchange** (derive shared secret) | TLS handshakes                                   | Ephemeral = PFS (Perfect Forward Secrecy); not for signatures                                         |
+| **ECDSA**                  | Asymmetric (elliptic curve)         | **Digital Signatures**                  | JWT (ES256, ES384, ES512), <br><br>Digital certs | Smaller key sizes for same security as RSA, but signature/verify asymmetry (sign fast, verify slower) |
+| **EdDSA (Ed25519, Ed448)** | Asymmetric (elliptic curve, modern) | **Digital Signatures**                  | JWT (EdDSA), <br><br>SSH keys, <br><br>TLS       | Faster, simpler, constant-time (resists side-channel attacks)                                         |
+
+# Hash vs Digest vs Signature vs Salt
+
+|Term|What it is|Purpose|Example|
+|---|---|---|---|
+|**Hash**|One-way function: input → fixed-size output|Integrity check, data fingerprint|`SHA-256("hello") = 2cf24d...`|
+|**Digest**|The **output** of a hash function|The actual hash value|`2cf24dba5...` is the digest of `"hello"`|
+|**Signature**|Cryptographic proof created with a **private key** over a message (usually its hash)|Authenticity + integrity + non-repudiation|`RSA_sign( SHA256(payload), private_key )`|
+|**Salt**|Random value added before hashing|Prevents pre-computed attacks (rainbow tables)|`hash(password + salt)` for password storage|
+
+#### **ECDHE** = **Elliptic Curve Diffie–Hellman Ephemeral**. 
+
+For **sharing** a secret  without sharing the secret
+
+1. Client and server agree on DH parameters (prime `p`, generator `g` or curve).
+2. Client picks random secret `a`, sends `A = g^a mod p`.
+3. Server picks random secret `b`, sends `B = g^b mod p`.
+4. Both compute shared
+	- Client: `K = B^a mod p`.
+	- Server: `K = A^b mod p`.
+	- Both get the same `K`.
+
+### Bcrypt
+
+Generate random salt per password
+
+`hash(password + salt)`
+
+The salt is stored in cleartext
+
+$2b \$12\$ N9qo8uLOickgx2ZMRZoMye IjZAg9x36PgojO6aG9a8pB9p46iXWZS
+- `$2b$` → bcrypt version
+- `12$` → cost factor (2^12 iterations)
+- `N9qo8uLOickgx2ZMRZoMye` → salt in cleartext (22 chars base64)
+- `IjZAg9x36PgojO6aG9a8pB9p46iXWZS` → hash(password + salt)
