@@ -1,0 +1,15 @@
+.mermaid {
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid > svg {
+  transition: max-width 0.1s;
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid:hover > svg {
+  max-width: 250%;
+  transition-duration: 0.5s;
+}
