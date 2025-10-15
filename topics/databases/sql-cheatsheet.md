@@ -392,3 +392,31 @@ NTILE(4)       OVER (ORDER BY salary) -- quartiles
 LEAD(salary)   OVER (ORDER BY salary) -- next row
 LAG(salary)    OVER (ORDER BY salary) -- previous row
 ```
+
+
+### Pivot
+
+| year | region | amount |
+| ---- | ------ | ------ |
+| 2023 | East   | 1000   |
+| 2023 | West   | 1500   |
+| 2023 | North  | 1200   |
+| 2024 | East   | 1100   |
+| 2024 | West   | 1600   |
+| 2024 | North  | 1300   |
+
+| year | East | West | North |
+| ---- | ---- | ---- | ----- |
+| 2023 | 1000 | 1500 | 1200  |
+| 2024 | 1100 | 1600 | 1300  |
+
+```sql
+SELECT
+  year,
+  SUM(CASE WHEN region = 'East'  THEN amount END) AS east,
+  SUM(CASE WHEN region = 'West'  THEN amount END) AS west,
+  SUM(CASE WHEN region = 'North' THEN amount END) AS north
+FROM sales
+GROUP BY year
+ORDER BY year;
+```

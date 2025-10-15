@@ -2,6 +2,26 @@
 
 ---
 
+## Multiplexing
+
+Two contexts:
+
+1. **Transport-layer multiplexing**
+    
+    - Many connections share the same IP address + NIC.
+        
+    - Each TCP connection is identified by a 4-tuple `(src IP, src port, dst IP, dst port)`.
+        
+    - This lets one host talk to thousands of different servers, and one server accept thousands of clients on the same port.
+        
+2. **I/O multiplexing**
+    
+    - One process can manage many sockets without blocking on one.
+        
+    - Syscalls: `select()`, `poll()`, `epoll_wait()` (Linux), `kqueue()` (BSD).
+        
+    - Basis of event-driven servers (e.g., Nginx, Node.js)
+
 ## Basics
 
 ### 1. What is a network?

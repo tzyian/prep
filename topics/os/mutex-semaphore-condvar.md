@@ -1,27 +1,45 @@
 ## Mutex vs Semaphore vs Condition Variable
 
 - **Mutex (mutual exclusion lock)**: guards a *critical section* so only one thread enters at a time.
-  - Ownership: thread that locks must unlock.
-  - Use when you need exclusive access to shared state.
+	- Ownership: thread that locks must unlock.
+	- Use when you need exclusive access to shared state.
 
 - **Semaphore**: a counter with `wait()`/`post()` that controls access to a resource pool or coordinates events.
-  - **Binary semaphore** (0/1) ≈ simple gate; **counting semaphore** allows up to _N_ concurrent holders.
-  - Not owned; any thread can `post()`.
+	- **Binary semaphore** (0/1) ≈ simple gate; **counting semaphore** allows up to _N_ concurrent holders.
+	- Not owned; any thread can `post()`.
 
 - **Condition Variable**: used with a mutex to *wait for a condition/predicate* to become true.
-  - Threads `wait()` (releasing the mutex atomically) and are awakened by `notify_one/all()`.
-  - Always recheck the predicate in a **while** loop (spurious wakeups are real).
-  - **Condition variable**: you have a _specific predicate_ (e.g., “queue not empty”, “state == READY”) and need to sleep until it’s true. Always: `while (!predicate) cv.wait(...)`.
+	- Get around the need for spinlocks
+	- Threads `wait()` (releasing the mutex atomically) and are awakened by `notify_one/all()`.
+	- Always recheck the predicate in a **while** loop (spurious wakeups are real).
+- **Condition variable**: you have a _specific predicate_ (e.g., “queue not empty”, “state == READY”) and need to sleep until it’s true. Always: `while (!predicate) cv.wait(...)`.
 
 ---
+
+### Condvars
+
+1. mutex MUST be locked
+2. on calling: `pthread_cond_wait(&cv, &m);` 
+	1. atomically unlocks mutex, sleeps
+3. on wake up (signal `&cv` or spurious wakeup):
+	1. return from `pthread_cond_wait(&cv, &m);` and reacquire mutex
+4. check the loop again!
 
 
 ```c
 void* waiter(void* _) {
     pthread_mutex_lock(&m);
-    while (!ready)                    // ALWAYS while, not if
-        pthread_cond_wait(&cv, &m);   // atomically unlocks & sleeps
+    while (!ready) {                   // ALWAYS while, not if
+	    // mutex MUST be locked
+		// atomically unlocks mutex, sleeps
+        pthread_cond_wait(&cv, &m);
+        // on waking up (signal or spurious), 
+        // reacquires mutex
+        // check the loop again!
+    }
+	
     // ... ready is true here ...
+    // do work
     pthread_mutex_unlock(&m);
     return NULL;
 }
@@ -36,11 +54,12 @@ void* signaler(void* _) {
 ```
 
 
-## Spurious Wakeups in Condvars
+1. **Spurious wakeup case**:  
+   - POSIX explicitly allows that a thread may return from `pthread_cond_wait` **even without a signal**.  
+   - So the contract is: *when it returns, you must re-check your predicate under the lock*.  
+   - If the predicate is still false → you go back into the wait.  
 
-### Spurious Wakeups
 
-A **spurious wakeup** happens when a thread waiting on a condition variable returns from `wait()` **even though no thread actually signaled/broadcasted**, and the condition it was waiting for may still be false.
 
 ---
 
@@ -106,66 +125,12 @@ Thus:
 
 ---
 
-#### 4. Correct Usage Pattern
-```c
-pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t  cv  = PTHREAD_COND_INITIALIZER;
-
-bool ready = false;   // shared state
-
-void* consumer(void* arg) {
-    pthread_mutex_lock(&mtx);
-
-    // MUST use while, not if
-    while (!ready) {
-        pthread_cond_wait(&cv, &mtx);
-        // -> atomically unlocks 'mtx' and sleeps
-        // -> when woken, 'mtx' is re-locked before returning
-    }
-
-    printf("Consumer: condition met!\n");
-    pthread_mutex_unlock(&mtx);
-    return NULL;
-}
-
-void* producer(void* arg) {
-    pthread_mutex_lock(&mtx);
-    ready = true;                // update predicate
-    pthread_mutex_unlock(&mtx);
-    pthread_cond_signal(&cv);    // wake one waiting thread
-    printf("Producer: signaled condition\n");
-    return NULL;
-}
-```
-
-#### 5. Summary
+### 5. Summary
 
 - Condition variable **needs a mutex** to:
-    
     - Protect shared state (predicate).
-        
     - Prevent missed signals.
-        
     - Make wait/signal atomic with respect to condition checks.
         
 
 Without the mutex, condition variables are unreliable and can lead to subtle deadlocks or lost wakeups.
-
-
-
-#### 1. Shared State Must Be Protected
-- The condition variable (`pthread_cond_t`) itself does **not track the condition** (like `ready == true`).
-- The **predicate** is stored in shared memory (`ready`).
-- Without a mutex:
-  - Producer could write `ready = true` at the same time Consumer reads it.
-  - This creates a **data race** → undefined behavior in C.
-
----
-
-#### 2. Wait Must Be Atomic
-- Correct behavior requires that **checking the predicate** and **blocking on the CV** happen atomically.
-- If no mutex:
-  1. Consumer checks `ready == false`.
-  2. Producer sets `ready = true` and signals CV.
-  3. Consumer goes to sleep.  
-  → **Signal lost**; consumer will sleep forever.

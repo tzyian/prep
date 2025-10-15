@@ -53,7 +53,7 @@ Short answers up front:
 ## Quick practical examples
 
 - **Single client machine to web server (one server IP:443)**  
-  - If client ephemeral range is 32768–60999 (~28k ports), the client can open ~~28k concurrent TCP connections to that server IP:443 (subject to OS limits and app FDs).
+  - If client ephemeral range is 32768–60999 (~28k ports), the client can open ~28k concurrent TCP connections to that server IP:443 (subject to OS limits and app FDs).
 
 - **Many clients to one server process (one server IP:80)**  
   - Server can accept millions of connections *in theory* if:

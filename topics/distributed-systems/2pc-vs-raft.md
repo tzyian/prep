@@ -33,7 +33,7 @@
 
 **Used in limited cases**:
 - Cross-resource transactions in monolithic enterprise systems (XA transactions, legacy middleware).
-- Not favored in large-scale cloud/distributed DBs.
+- Not favoured in large-scale cloud/distributed DBs.
 
 ---
 

@@ -26,6 +26,8 @@
 6. **Authoritative DNS Server**  
    - The authoritative server contains the actual DNS records (A, AAAA, CNAME, MX, etc.).  
    - It returns the IP address (e.g., A record → IPv4 address).
+   - A is IPv4
+   - AAAA is IPv6
 
 7. **Return to Client**  
    - The recursive resolver caches the result (for the duration of the TTL).  

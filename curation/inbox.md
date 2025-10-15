@@ -222,14 +222,13 @@ devops, grafana, kubernetes, docker, loki, prometheus, argo, flux, helm, kustomi
 
 
 Goroutines sockets websockets
-He asked abt security and symm/asymm cryptography
 
 
 C++ Memory model (idk what this is)
 paging
 race conditions
 message queues
-and of course it ends in implement lru cache
+lru cache
 
 
 Fast io

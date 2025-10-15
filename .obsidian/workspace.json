@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8eb4a26380fe1529",
+        "id": "3ad30b0c2f785ed4",
         "type": "tabs",
         "children": [
           {
-            "id": "8db5a471d41bad4c",
+            "id": "ced0c478cbffe0ce",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "topics/behavioural 1.md",
-                "mode": "source",
-                "source": false
+                "aFile": "topics/databases/time series databases.md",
+                "bFile": "topics/databases/time series databases.md",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "behavioural 1"
+              "icon": "diff",
+              "title": "Diff: time series databases"
             }
           }
         ]
@@ -142,21 +142,31 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Welcome.md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Welcome"
+              "title": "Outline of README"
+            }
+          },
+          {
+            "id": "d756ae79df9f2787",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 509.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -166,48 +176,56 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "8db5a471d41bad4c",
+  "active": "ced0c478cbffe0ce",
   "lastOpenFiles": [
-    "topics/behavioural.md",
-    "topics/behavioural 1.md",
-    "topics/projects.md",
-    "topics/security/csrf-vs-cors.md",
-    "topics/security/cookies-vs-token-auth.md",
-    "topics/security/symm-vs-assym.md",
-    "topics/web/idempotency-in-http.md",
-    "topics/web/load-balancer.md",
-    "topics/web/rest-vs-rpc.md",
-    "topics/web/websockets-vs-sse.md",
-    "topics/web/websockets-security.md",
-    "topics/what-happens-when-you-open-a-link.md",
-    "topics/web/caching-strategies.md",
-    "topics/web/http-caching.md",
-    "topics/networks/dns-resolution.md",
-    "topics/os/virtual-memory.md",
-    "topics/os/syscalls-and-traps.md",
-    "topics/os/paging alt.md",
-    "topics/os/race conditions.md",
-    "topics/os/process-vs-thread.md",
-    "topics/os/paging.md",
-    "topics/os/optimistic-locking.md",
-    "topics/os/mutex-semaphore-condvar.md",
-    "topics/os/multi-tasking.md",
-    "topics/os/memory-mapped-io.md",
-    "topics/os/lock-free-algos.md",
+    "assets/Tcp-vs-quic-handshake.svg.png",
+    "assets/Pasted image 20251002124729.png",
+    "assets/Pasted image 20251002125121.png",
+    "assets/Pasted image 20251002124641.png",
+    "assets/Pasted image 20251002124522.png",
+    "Welcome.md",
+    "curation/vetting-guide.md",
+    "curation/inbox.md",
+    "curation/example-questions.md",
+    "README.md",
+    "AGENTS.md",
+    "topics/distributed-systems/2PC-two-phase-commit.md",
+    "roles/backend.md",
+    "roles/data-engineering.md",
+    "templates/question-card.md",
+    "behavioural/behavioural.md",
+    "Untitled.md",
+    "topics/security/oauth.md",
+    "topics/security/rsa.md",
+    "topics/databases/different db types and how they are optimised.md",
+    "topics/databases/wal.md",
+    "topics/databases/two-phase-locking.md",
+    "topics/databases/time series databases.md",
+    "topics/databases/sql-cheatsheet.md",
+    "topics/databases/sharding.md",
+    "topics/databases/normalisation.md",
+    "topics/databases/mvcc.md",
+    "topics/databases/isolation-levels.md",
+    "topics/databases/indexes.md",
+    "topics/databases/aries-recovery.md",
+    "Pasted image 20251002125108.png",
+    "Pasted image 20251002124629.png",
+    "Pasted image 20251002124445.png",
+    "4913",
+    "behavioural",
+    "assets/Pasted image 20250927121606.png",
+    "assets/Pasted image 20250927121449.png",
+    "topics/networks/full-flow-shorter.md~",
+    "topics/networks/4913",
+    "topics/networks/tools.md~",
     "topics/devops",
-    "assets/media_FmXEahEXEAEBd_Z.jpg",
     "topics/os/Untitled",
-    "assets/auth-sequence-auth-code-pkce.png",
     "topics/web",
     "assets",
-    "vetted/security/oauth2.md~",
-    "topics/distributed-systems",
-    "topics/system-design",
-    "topics/databases",
-    "topics/security",
-    "topics/os"
+    "vetted/security/oauth2.md~"
   ]
 }

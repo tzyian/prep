@@ -1,5 +1,15 @@
 # Paging in Operating Systems
 
+
+![[Pasted image 20251002125121.png]]
+
+TLB is the cache
+
+
+
+
+![[Pasted image 20251002124729.png]]
+
 ## 1. What is Paging?
 - **Paging** is a memory management technique where:
   - Virtual memory (process address space) is divided into fixed-size **pages**.
@@ -69,15 +79,3 @@ A virtual address is split into:
 - TLB misses add latency.
 
 ---
-
-## 9. Diagram
-
-Virtual Address: [ VPN | Offset ]  
-|  
-v  
-+-----------------+  
-| Page Table |  
-+-----------------+  
-|  
-v  
-Physical Address: [ PFN | Offset ]

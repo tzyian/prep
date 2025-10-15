@@ -70,18 +70,15 @@
 
 
 
-| Aspect        | Process                      | Thread (within process)        |
-|---------------|------------------------------|--------------------------------|
-| **Heap**      | Private (per process)        | Shared (all threads in process)|
-| **Stack**     | One per process (main thread) | One per thread (private)       |
-| **Isolation** | Heap/stack isolated by OS     | Heap shared, stacks private    |
-| **Access**    | Other processes need IPC      | Threads can access same heap   |
+| Aspect        | Process                       | Thread (within process)         |
+| ------------- | ----------------------------- | ------------------------------- |
+| **Heap**      | Private (per process)         | Shared (all threads in process) |
+| **Stack**     | One per process (main thread) | One per thread (private)        |
+| **Isolation** | Heap/stack isolated by OS     | Heap shared, stacks private     |
+| **Access**    | Other processes need IPC      | Threads can access same heap    |
 
 ---
+- **Leveraging Multiple Cores**: Modern computers have multiple CPU cores. By running CPU-bound tasks in separate processes, each process can be assigned to a different core, achieving true parallel execution. If an application is single-threaded, it can only utilize one CPU core at a time, regardless of how many are available.[](https://stackoverflow.com/questions/12707924/multiple-process-vs-multiple-threads-for-cpu-intensive-and-io-intensive-processe)
+    
 
----
-
-#### Analogy
-- **User threads**: Like actors in a play managed by a director who only rents **one stage** → actors take turns but can’t perform in parallel.  
-- **Kernel threads**: Each actor gets their own stage from the theater manager → true parallelism, but booking stages is costly.  
-- **Hybrid threads**: A director manages actors and negotiates with the theater manager for multiple stages → balance of efficiency and flexibility.
+**Memory Isolation**: Each process has its own independent memory space. This isolation is a major advantage for CPU-bound work, as it prevents parallel tasks from interfering with each other's data, which can lead to complex bugs like race conditions.

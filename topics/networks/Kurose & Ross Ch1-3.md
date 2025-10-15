@@ -87,11 +87,12 @@ Cookies stored on user's browser
 browser caches with HTTP 304
 
 ### HTTP1.1/2
-| HTTP/1.1                          | HTTP/2                                      | HTTP/3                               |
-| --------------------------------- | ------------------------------------------- | ------------------------------------ |
-| FCFS causes Head of Line blocking | client specified order priority             | per boject error, congestion control |
-| loss recovery stalls transmission | *push* unrequested objects to client        |                                      |
-|                                   | divide objects into frames, schedule frames | security                             |
+| HTTP/1.1                          | HTTP/2                                      | HTTP/3                              |
+| --------------------------------- | ------------------------------------------- | ----------------------------------- |
+| FCFS causes Head of Line blocking | client specified order priority             | per oject error, congestion control |
+| loss recovery stalls transmission | *push* unrequested objects to client        |                                     |
+|                                   | divide objects into frames, schedule frames | security                            |
+|                                   |                                             | running on QUIC                     |
 
 ### QUIC
 application protocol on top of UDP
@@ -123,7 +124,8 @@ RR format: `(name, value, type, ttl)`
 
 | type  | name                                          | value                                     |
 | ----- | --------------------------------------------- | ----------------------------------------- |
-| A     | hostname                                      | IP addr                                   |
+| A     | hostname                                      | IPv4 addr                                 |
+| AAAA  | hostname                                      | IPv6                                      |
 | NS    | domain e.g. foo.com                           | hostname of auth name server for domain   |
 | CNAME | alias name for canonical name<br>e.g. ibm.com | canonical name<br>e.g. servereast.ibm.com |
 | MX    | name                                          | SMTP mail server associated with name     |
