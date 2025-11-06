@@ -20,7 +20,7 @@ Here’s a structured comparison:
     
     - **Writes:** Fast inserts/updates with ACID guarantees. Normalised schema to avoid anomalies. Use of indexes for point lookups.
         
-    - **Reads:** Point queries (`WHERE id=…`). Optimised by B-trees, clustered indexes, row-oriented storage.
+    - **Reads:** Point queries (`WHERE id=…`). Optimised by B-trees, clustered indexes (the physical order data is stored), row-oriented storage.
         
 - **Tradeoff:** Not efficient for large scans/aggregations.
     

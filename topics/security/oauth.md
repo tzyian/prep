@@ -106,9 +106,26 @@ API takes JWKS public key and runs JWT `algo` to see if the JWT signature is aut
 	Returned (JSON):
 		- `access_token=newJWT...`
 		- (possibly new `refresh_token`)
+
+### Replay attacks
+
+- The attacker might see `code=abc123` in the redirect.
     
+- But they _don’t know the original `code_verifier`_, because that was generated and kept client-side.
+    
+- When they try to exchange `abc123` without the correct verifier, step (3) fails.
+    
+- Result: The stolen authorization code is useless.
+
+they don't know the code challenge, and the auth code is bound to the challenge
+
 ## Authorization Code Flow With PKCE
 https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-pkce
+
+
+
+
+The auth code is generated from the params from the code challenge, to prevent replay attacks with the access token
 
 Public clients (SPAs, mobiles) cannot store CLIENT_SECRET securely
 PKCE Hardens authorization code exchange

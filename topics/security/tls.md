@@ -16,10 +16,6 @@ TLS provides:
 3. Browser uses the server’s **public key** to verify the TLS handshake (RSA/ECDHE).
 4. If valid, they agree on a **symmetric session key (AES)** for fast encrypted communication.
 
-
-
-
-
 ---
 
 ## 3. What’s in a TLS Certificate?

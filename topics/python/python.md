@@ -1,5 +1,7 @@
 
 
+# Requests
+
 ```python
 payload = {'key1': 'value1', 'key2': 'value2'}
 r = requests.get('https://httpbin.org/get', params=payload)
@@ -7,6 +9,8 @@ r.json()
 ```
 
 
+
+# Context Managers
 ```python
 # =========================
 # 1) Context managers
@@ -47,8 +51,12 @@ c = C()
 with temp_value(C, "x", 99):
     assert C.x == 99
 assert C.x == 1
+```
 
 
+# Decorators
+
+```python
 # =========================
 # 2) Decorators with args
 # =========================
@@ -76,7 +84,10 @@ def fib(n):
     return 1 if n < 2 else fib(n-1) + fib(n-2)
 
 # print(fib(5))
+```
 
+## Iterators
+```python
 
 # =========================
 # 3) Iterators and generators
@@ -113,8 +124,11 @@ def flatten(list_of_lists):
         yield from sub
 
 # list(flatten([[1,2],[3],[4,5]])) -> [1,2,3,4,5]
+```
 
 
+## Couroutines
+```python
 # =========================
 # 4) Coroutines + 'yield from' details
 # =========================
@@ -148,16 +162,21 @@ def legacy_coro():
     yield from legacy_sleep(0.01)
     return 42
 
+```
 
+
+## Threadpool
+
+# Key facts:
+- ThreadPoolExecutor/ProcessPoolExecutor within 'with' uses shutdown(wait=True) at exit.
+- Exiting the 'with' blocks until all submitted tasks finish (unless you manually `shutdown(wait=False)`).
+- Calling future.result() blocks until that future completes.
+- asyncio.run(coro) blocks the current thread until 'coro' completes; it also cancels remaining pending tasks in that created loop before closing.
+
+```python
 # =========================
 # 5) ThreadPool/ProcessPool and 'asyncio.run' blocking semantics
 # =========================
-
-# Key facts:
-# - ThreadPoolExecutor/ProcessPoolExecutor within 'with' uses shutdown(wait=True) at exit.
-#   Exiting the 'with' blocks until all submitted tasks finish (unless you manually shutdown(wait=False)).
-# - Calling future.result() blocks until that future completes.
-# - asyncio.run(coro) blocks the current thread until 'coro' completes; it also cancels remaining pending tasks in that created loop before closing.
 
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 import time
@@ -190,17 +209,23 @@ async def main_run_block_demo():
     return "done"
 
 # asyncio.run(main_run_block_demo())  # blocks until "done"
+```
 
+
+## PyTorch
+ torch.nn.Module overrides __call__ to:
+  - run pre-hooks
+  - dispatch to .forward(*args, **kwargs)
+  - run post-hooks
+ This enables modules to be called like functions.
+
+
+```python
 
 # =========================
 # 6) PyTorch __call__ mechanics
 # =========================
 
-# torch.nn.Module overrides __call__ to:
-#  - run pre-hooks
-#  - dispatch to .forward(*args, **kwargs)
-#  - run post-hooks
-# This enables modules to be called like functions.
 
 # Minimal demonstration:
 try:

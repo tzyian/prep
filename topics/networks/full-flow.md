@@ -65,7 +65,7 @@ Let's walk through **every step** in detail, from a user typing a URL in their b
 
 - **Once IP address is resolved:**
     - Browser initiates a TCP connection to the server IP on port 80 (HTTP) or 443 (HTTPS).
-    - **TCP three-way handshake:**
+    - **TCP three-way handshake: in 1 RTT**
         - Client sends TCP SYN segment to server.
         - Server replies with TCP SYN-ACK segment.
         - Client sends TCP ACK segment.

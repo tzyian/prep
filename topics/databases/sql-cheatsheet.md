@@ -89,7 +89,7 @@ SELECT DISTINCT dept_id
 FROM employees
 ORDER BY dept_id ASC
 
--- Conditional
+-- Conditional / Pivot
 SELECT name, 
 CASE 
 	WHEN salary > 5000 THEN 'High' 
@@ -232,10 +232,10 @@ WHERE rn <= 3;
 3. 3rd highest salary
 ```sql
 -- 3rd highest salary overall
-SELECT salary
+SELECT t.salary
 FROM (
-  SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) rnk
-  FROM employees
+  SELECT e.salary, DENSE_RANK() OVER (ORDER BY e.salary DESC) rnk
+  FROM employees e
 ) t
 WHERE rnk = 3;
 ```
@@ -336,6 +336,68 @@ FROM (
 ) t
 ORDER BY year ASC;
 ```
+
+9. Customers who bought all products
+$$
+p \rightarrow q \equiv \neg p \lor q
+$$
+$$
+\forall p \, (p \rightarrow q) \equiv \neg \exists p \, (\neg (\neg p \lor q)) \equiv \neg \exists p \, (p \land \neg q)
+
+$$
+
+A) Universal-quantifier form
+$\{\, c \mid Customer(c) \land \forall p \, (\, Product(p) \rightarrow \exists o \, (\, Order(o) \land o.\text{cust\_id} = c.\text{id} \land o.\text{prod\_id} = p.\text{id} \,)\,) \,\}$
+
+B) Double-negation (division) form
+$\{\, c \mid Customer(c) \land \neg \exists p \, (\, Product(p) \land \neg \exists o \, (\, Order(o) \land o.\text{cust\_id} = c.\text{id} \land o.\text{prod\_id} = p.\text{id} \,)\,) \,\}$
+
+```sql
+SELECT c.customer_id, c.name
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.name
+HAVING COUNT(DISTINCT o.product_id) = (SELECT COUNT(*) FROM products);
+
+
+
+- No product exists that this customer didn’t buy
+SELECT c.customer_id, c.name
+FROM customers c
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM products p
+  WHERE NOT EXISTS (
+    SELECT 1
+    FROM orders o
+    WHERE o.customer_id = c.customer_id
+      AND o.product_id = p.product_id
+  )
+);
+-- Inner NOT EXISTS: this customer didn't buy product
+-- Outer NOT EXISTS: no product where this customer didn't buy
+-- If there’s even one product the customer didn’t buy, inner `NOT EXISTS` succeeds → outer fails.
+
+```
+
+10. Customers who bought no products
+```sql
+SELECT c.customer_id, c.name
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.customer_id IS NULL;
+
+-- alternate
+SELECT c.customer_id, c.name
+FROM customers c
+WHERE NOT EXISTS (
+  SELECT 1
+  FROM orders o
+  WHERE o.customer_id = c.customer_id
+);
+
+```
+
 
 ## Equivalent SQL Functions
 

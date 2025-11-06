@@ -1,12 +1,10 @@
 
 ## 4. RSA, SHA, AES
-| Algorithm                  | Type                                | Purpose                                 | Where Used                                       | Notes                                                                                                 |
-| -------------------------- | ----------------------------------- | --------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| **RSA**                    | Asymmetric (public/private)         | Encryption, **Digital Signatures**      | JWT (RS256),<br><br>digital certs                | Strong but slower at large key sizes; 2048-bit common baseline                                        |
-| **ECDHE**                  | Asymmetric (elliptic curve)         | **Key Exchange** (derive shared secret) | TLS handshakes                                   | Ephemeral = PFS (Perfect Forward Secrecy); not for signatures                                         |
-| **ECDSA**                  | Asymmetric (elliptic curve)         | **Digital Signatures**                  | JWT (ES256, ES384, ES512), <br><br>Digital certs | Smaller key sizes for same security as RSA, but signature/verify asymmetry (sign fast, verify slower) |
-| **EdDSA (Ed25519, Ed448)** | Asymmetric (elliptic curve, modern) | **Digital Signatures**                  | JWT (EdDSA), <br><br>SSH keys, <br><br>TLS       | Faster, simpler, constant-time (resists side-channel attacks)                                         |
-| AES                        | Symmetric                           | Encryption                              | Shared key after TLS                             |                                                                                                       |
+| Algorithm | Type                        | Purpose                                 | Where Used                        | Notes                                                          |
+| --------- | --------------------------- | --------------------------------------- | --------------------------------- | -------------------------------------------------------------- |
+| **RSA**   | Asymmetric (public/private) | Encryption, **Digital Signatures**      | JWT (RS256),<br><br>digital certs | Strong but slower at large key sizes; 2048-bit common baseline |
+| **ECDHE** | Asymmetric (elliptic curve) | **Key Exchange** (derive shared secret) | TLS handshakes                    | Ephemeral = PFS (Perfect Forward Secrecy); not for signatures  |
+| AES       | Symmetric                   | Encryption                              | Shared key after TLS              |                                                                |
 
 # Hash vs Digest vs Signature vs Salt
 
