@@ -49,11 +49,8 @@ When a generation’s threshold is exceeded:
     - Survivors move to the next (older) generation.
         
     - The oldest generation (2) is scanned least frequently.
-        
 3. **Finalizers (`__del__`)**
-    
     - If any unreachable objects have `__del__`, they are not destroyed automatically because destruction order is uncertain.
-        
     - They are moved into `gc.garbage` for user inspection.
 
 
