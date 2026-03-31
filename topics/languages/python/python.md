@@ -167,7 +167,6 @@ def legacy_coro():
 
 ## Threadpool
 
-# Key facts:
 - `ThreadPoolExecutor`/`ProcessPoolExecutor` within 'with' uses `shutdown(wait=True)` at exit.
 - Exiting the 'with' blocks until all submitted tasks finish (unless you manually `shutdown(wait=False)`).
 - Calling `future.result()` blocks until that future completes.

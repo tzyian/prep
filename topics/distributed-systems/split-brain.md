@@ -1,5 +1,4 @@
 
-## 3) Split‑Brain Scenario
 **What it is:** A network partition (or control-plane failure) causes **two (or more) leaders/primaries** to exist simultaneously. Each side accepts writes, creating divergent histories and possible corruption.
 
 **Why it’s dangerous**

@@ -5,9 +5,22 @@
 - **REPEATABLE READ** → Prevents dirty & non-repeatable reads, phantom reads possible.
 - **SERIALIZABLE** → Strictest, fully ACID, prevents all anomalies.
 
-Dirty read: read uncommitted data
-Phantom Read: read the same row in a single xact with different values, cos of interleaving commits
-Non-repeatable read: collection of rows returned by a query is different cos of interleaving commits
+##  Data Hazards
+• Read-after-write hazard (the change must be visible after committing)
+• Write-after-read hazard (reader must read latest value even if it read earlier than
+commit)
+• Write-after-write hazard (the write coming from the last commit must persist
+
+### Concurrency Hazards
+- Lost Update (a second commit overwrites a previous commit without using the correct
+value for a change)
+- Dirty Read (reading uncommitted data due to only flushing buffers on commit)
+- Non-repeatable read (the 2nd read of a an address is different from the first due to
+intermediate commits by another thread)
+- Read skew (reading globally inconsistent data due to some addresses modified before
+another commit, and other addresses modified after)
+- Phantom Read: read the same row in a single xact with different values, cos of interleaving commits
+- Write skew
 
 ## ACID
 - **Atomicity** → All or nothing.

@@ -1,5 +1,5 @@
 
-## 4. RSA, SHA, AES
+## RSA, SHA, AES
 | Algorithm | Type                        | Purpose                                 | Where Used                        | Notes                                                          |
 | --------- | --------------------------- | --------------------------------------- | --------------------------------- | -------------------------------------------------------------- |
 | **RSA**   | Asymmetric (public/private) | Encryption, **Digital Signatures**      | JWT (RS256),<br><br>digital certs | Strong but slower at large key sizes; 2048-bit common baseline |

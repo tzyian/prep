@@ -1,39 +1,33 @@
 # Question Card: Caching Strategies
 
-Cache aside  (lazy load)
-Read through (cache reads db)
-Write through (write to both cache and db)
-Write behind (cache async write to db)
-Write around (write to db, only fetch cache)
+## Types
 
-- Question: Compare caching strategies (write-through, write-back, cache-aside). When to use which?
-- Role: backend
-- Difficulty: mid
+- Cache aside  (lazy load)
+- Read through (cache reads db)
+- Write through (write to both cache and db)
+- Write behind (cache async write to db)
+- Write around (write to db, only fetch cache)
 
-## Short Answer
-Cache-aside keeps source of truth in DB; app loads into cache on miss and invalidates/updates on write. Write-through writes to cache and DB synchronously. Write-back buffers writes in cache and flushes later. Use cache-aside for general app caching, write-through for simplicity/consistency, and write-back for high write throughput with acceptable risk.
 
-## Deep Dive
-- Eviction: LRU/LFU/TTL; stampede protection (locks/jittered TTL).
+- Core headers: `Cache-Control`, `ETag`/`If-None-Match`, `Last-Modified`/`If-Modified-Since`.
+- Layers: browser cache, CDN/edge, reverse proxy, application cache.
+- Strategies: freshness (max-age), revalidation, surrogate keys, cache busting.
+
+
+## Eviction Strategies
+- Least Recently Used (LRU)
+- Least Frequently Used (LFU)
+- Time to live (TTL)
+
+
+## Sharding
+
+## Invalidation Path
+- 
+
+## CDN Caching
 - Consistency: invalidate on change, version keys, or publish/subscribe.
-- Topology: client‑side vs service‑side cache; CDNs for edge.
 
-## Example
-```text
-Cache-aside read: GET k -> miss -> DB -> set k (TTL)
-```
-
-## Follow‑ups
-- Negative caching and TTL selection.
-- Hot keys, sharding, and replication.
-
-## Pitfalls
+## Thundering Herd Problem
 - Thundering herd on popular expirations.
-- Inconsistent invalidations leading to stale reads.
-
-## Checklist
-- Strategy choice · TTL/eviction · stampede protection · invalidation path
-
-## Sources
-- [http-caching](<./http-caching.md>) · [consistency-models](<../distributed-systems/consistency-models.md>)
-
+- stampede protection (locks/jittered TTL).

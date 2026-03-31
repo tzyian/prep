@@ -1,4 +1,3 @@
-# Pytest
 
 |Layer|What to test|Use DB?|Use mocks?|
 |---|---|---|---|

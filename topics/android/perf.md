@@ -1,4 +1,4 @@
-模块化
+模块化 (modularisation)
 
 `systrace` for 
  render time, see what is blocking

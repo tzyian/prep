@@ -5,7 +5,6 @@
 #### 2. Test-and-Set (TAS)
 
 - **Definition**: An atomic instruction that sets a memory location to `1` and returns its old value.
-    
 - Typically used to build **spinlocks**.
 
 
@@ -32,7 +31,4 @@ int tas(int *addr) {
         __ATOMIC_SEQ_CST     // memory order
     );
 }
-
-
 ```
-#### 

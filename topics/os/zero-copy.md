@@ -1,30 +1,16 @@
-### Zero-Copy — TL;DR
+i.e. Avoids at least one extra copy through user space
+- kernel and hardware may still copy between buffers 
+- reduces memcpy CPU cycles
+- saves memory bandwidth
+- data can stay within kernel space and is accessed 
 
+| Aspect    | Normal I/O                          | Zero-Copy I/O                            |
+| --------- | ----------------------------------- | ---------------------------------------- |
+| Data path | Disk → kernel → user → kernel → NIC | Disk → kernel → NIC                      |
+| CPU usage | High (memcpy)                       | Low                                      |
+| Latency   | Higher                              | Lower                                    |
+| APIs      | `read/write`                        | `sendfile`, `splice`, `mmap`, `io_uring` |
 
-#### Key idea
-
-> “Zero-copy” doesn’t mean _literally zero_ copies —  
-> it means **no redundant user↔kernel copies**; kernel and hardware may still copy between buffers they control.
-
-
-#### What it means
-Normally, sending data between disk, kernel, and user space requires **copying buffers** several times:
-
-```
-[Disk] → [Kernel buffer] → [User buffer] → [Socket buffer] → [NIC]
-```
-
-
-Each copy = CPU + memory overhead.
-
-**Zero-copy** avoids those redundant memory copies — data stays in kernel space and is passed between subsystems by reference.
-
----
-
-#### Why it matters
-- Saves **CPU cycles** (no memcpy between user and kernel).  
-- Saves **memory bandwidth**.  
-- Critical for **high-throughput servers** (file servers, proxies, Kafka, etc.).
 
 ---
 
@@ -40,8 +26,6 @@ Each copy = CPU + memory overhead.
 
 ---
 
-#### Example — Traditional vs Zero-Copy
-
 **Traditional read/write:**
 ```c
 char buf[4096];
@@ -50,9 +34,4 @@ write(out_fd, buf, n);              // copy: user → kernel
 ```
 
 
-|Aspect|Normal I/O|Zero-Copy I/O|
-|---|---|---|
-|Data path|Disk → kernel → user → kernel → NIC|Disk → kernel → NIC|
-|CPU usage|High (memcpy)|Low|
-|Latency|Higher|Lower|
-|APIs|`read/write`|`sendfile`, `splice`, `mmap`, `io_uring`|
+

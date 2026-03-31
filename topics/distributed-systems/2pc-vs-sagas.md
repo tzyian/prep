@@ -30,5 +30,5 @@ Compensate on failure: release inventory, refund payment, cancel order
 - Atomicity vs eventual consistency · coordinator failure · compensation design · outbox/inbox
 
 ## Sources
-- [2PC-two-phase-commit](<./2PC-two-phase-commit.md>) · [wal](<../databases/wal.md>) · [rest-vs-rpc](<../web/rest-vs-rpc.md>)
+- [2PC-two-phase-commit](<./2PC-two-phase-commit.md>) · [wal](<../databases/wal.md>) · [rest-vs-graphql](<../web/rest-vs-graphql.md>)
 

@@ -21,7 +21,7 @@ tail -n 50 -f /var/log/syslog # follow the last 50 lines
 
 ps aux | grep docker
 kill -9 [pid]
-htop # see https://codeahoy.com/2017/01/20/hhtop-explained-visually/
+htop # see below
 
 chown
 chmod
@@ -29,10 +29,15 @@ chmod
 tar xvf file.tar[.gz|.bz.xz]
 
 scp localfile user@remote_host:destination
-
+sftp user@remote_host
+ls # remote ls
+lls # prepend l for local
+get -R remote_dir
+put local_file 
 
 
 ln -s file/ordirectory symlink # symlinks
+
 ls -1 | wc -l # count within dir
 find . -maxdepth 1 -type f | wc -l # count files within dir
 ```
@@ -109,24 +114,16 @@ aws secretsmanager get-secret-value --secret-id db_app |
 ```
 
 
-bash
-htop
-jless
-xh
-nmap/rustscan
-
-
-
 
 
 # Bash Readline Shortcuts
 
 ## Tricks
-| Command | Description              |
-| ------- | ------------------------ |
-| cd -    | Last dir                 |
-| !!      | Last command             |
-|         | Start a line with # and  |
+| Command | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| cd -    | Last dir                                                     |
+| !!      | Last command                                                 |
+|         | Start a line with # and then enter to add to command history |
 
 ## Bash Readline
 

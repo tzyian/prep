@@ -1,9 +1,12 @@
 ## Authentication vs Authorization
-Authentication: guarantee access scope
-Authorization: guarantee identity
-
+| Concept            | Meaning                                                                      | Who handles it                    | Where Handled                         |
+| ------------------ | ---------------------------------------------------------------------------- | --------------------------------- | ------------------------------------- |
+| **Authentication** | Verifying **who** the user is (login, password, MFA)                         | **auth server (IdP)**             | Identity within Identity Token (OIDC) |
+| **Authorization**  | Deciding **what** the client/app is allowed to access on behalf of that user | **auth server + Resource Server** | Scopes (access token)                 |
 Authentication guarantees authorization
 Authorization does not lead to authentication
+
+
 ## OAuth Roles
 1. Resource Owner (owner grants permission to access resources)
 	1. you own your Google photos
@@ -18,119 +21,96 @@ Authorization does not lead to authentication
 - adds authentication to OAuth authorization
 - Adds ID Token to the JWT (sub, email, name)
 
-## JWT
-(assymmetric)
-- `header.payload.signature`
-- JWT signature created by auth server
-	- `signature = RS256_sign( SHA256( header + "." + payload ), private_key )
-- `PK = (n, e)`
-- Auth server computes digest and signature
-	- `h = SHA256(header || "." || payload)`
-	- `s = m^d mod n`
-- Resource server takes digest `h` and signature `s`. If `PK = (n, e)`
-	- `m' = s^e mod n`
-
-## JSON Web Key Set (JWKS)
-- public keys published by **authorization server**
-
-- signed by authorization server's private key
 
 
-- resource servers verify JWT with authorization server JWKS public key
-```json
-{ // JWT header
-  "alg": "RS256",
-  "typ": "JWT", 
-  "kid": "abc123"  // key id
-}
-```
-API takes JWKS public key and runs JWT `algo` to see if the JWT signature is authentic (validity that it is issued by the auth provider)
+![jwt](<./jwt.md>)
 
-```json
-{ // JWKS
-  "keys": [
-    {
-      "kty": "RSA", 
-      "kid": "abc123",
-      "use": "sig",
-      "n": "...",   // modulus
-      "e": "AQAB"   // exponent
-    }
-  ]
-}
 
-```
+##  Browser Flow
+| Step                    | What Happens                      | Who Talks                          |
+| ----------------------- | --------------------------------- | ---------------------------------- |
+| 1. Authentication       | User enters credentials           | User ↔ Auth Server (TLS)           |
+| 2. Authorization        | User consents to client scopes    | User ↔ Auth Server                 |
+| 3. Auth Code issued     | Proof of login+consent            | Auth Server → Client (via browser) |
+| 4. PKCE verifies client | Prevents stolen code use          | Client ↔ Auth Server               |
+| 5. Tokens issued        | JWTs = results of login & consent | Auth Server → Client               |
+| 6. Resource access      | Client uses JWT to call API       | Client ↔ Resource Server           |
 
-## Tokens
-- **Authorization Code** → One-time credential for exchange.
-- **Access Token** → Grants temporary access to resources (often JWT).
-- **Refresh Token** → Used by client to silently obtain new access tokens without asking the user to log in again.
-
-### Authorisation Request
 
 ## Authorization Code Flow
-1. **User → Client**  
-    You click “Login with X”.
-2. **Client → Auth Server**  (in query params)
-		- `response_type=code` → ask for authorization code
-		- `client_id=...` → app’s registered ID
-		- `redirect_uri=...` → where code should be sent back
-		- `scope=openid profile email api.read` → requested access scopes
-		- `state=xyz123` → random string to prevent CSRF
-		- `code_challenge=...` → `BASE64(SHA256(PKCE_verifier))`
-		- `code_challenge_method=S256` → PKCE method
+1. User → Client
+    **You click “Login with X”.**
+2. **Client → Auth Server  (in query params)**
+		**- `response_type=code` → ask for authorization code**
+		**- `client_id=...` → app’s registered ID**
+		**- `redirect_uri=...` → where code should be sent back**
+		**- `scope=openid profile email api.read` → requested access scopes**
+		**- `state=xyz123` → random string to prevent CSRF**
+		**- `code_challenge=...` → `BASE64(SHA256(PKCE_verifier))`**
+		**- `code_challenge_method=S256` → PKCE method**
 3. **Auth Server → User**  
-    Prompts login + consent.    
-4. **Auth Server → Client**  (in query params)
-		- `code=abc123` → short-lived authorization code
-		- `state=xyz123` → must match original
-5. **Client → Auth Server**  (Token exchange in POST body)
-	    - `grant_type=authorization_code`
-		- `code=abc123` → authorization code received
-		- `redirect_uri=...` → must match original
-		- `client_id=...` (and client_secret if confidential client)
-		- `code_verifier=...` → original PKCE random string
-6. **Auth server --> Client** (token returned in JSON)
-		- `token_type=Bearer`
-		- `expires_in=3600` → lifetime in seconds
-		- `refresh_token=def456...` → (if allowed) for silent renewal
-		- `id_token=eyJhbGciOiJSUzI1Ni...` → (if OIDC scope) identity claims (who the user is)
+    **Prompts login + consent.**    
+4. **Auth Server → Client  (in query params)**
+		**- `code=abc123` → short-lived authorization code**
+		**- `state=xyz123` → must match original**
+5. **Client → Auth Server  (Token exchange in POST body)**
+	    **- `grant_type=authorization_code`**
+		**- `code=abc123` → authorization code received**
+		**- `redirect_uri=...` → must match original**
+		**- `client_id=...` (and client_secret if confidential client)**
+		**- `code_verifier=...` → original PKCE random string**
+6. **Auth server --> Client (token returned in JSON)**
+		**- `token_type=Bearer`**
+		**- `expires_in=3600` → lifetime in seconds**
+		**- `refresh_token=def456...` → (if allowed) for silent renewal**
+		**- `id_token=eyJhbGciOiJSUzI1Ni...` → (if OIDC scope) identity claims (who the user is)**
 7. **Client → Resource Server**  
-	    - Uses **Access Token** in `Authorization: Bearer` header.
+	    **- Uses Access Token in `Authorization: Bearer` header.**
 8. **Resource Server → Client**  
-	- Verifies token (via **[oauth](<#JSON Web Key Set (JWKS))>)**) and serves resource.
-9. **Client → Auth Server**  (Token exchange in POST body)
-	Sent (POST body):
-		- `grant_type=refresh_token`
-		- `refresh_token=def456...`
-	Returned (JSON):
-		- `access_token=newJWT...`
-		- (possibly new `refresh_token`)
+	- **Verifies token (via [oauth](<#JSON Web Key Set (JWKS)>)) and serves resource.**
+9. **Client → Auth Server  (Token exchange in POST body)**
+	**Sent (POST body):**
+		**- `grant_type=refresh_token`**
+		**- `refresh_token=def456...`**
+	**Returned (JSON):**
+		**- `access_token=newJWT...`**
+		**- (possibly new `refresh_token`)**
 
 ### Replay attacks
 
 - The attacker might see `code=abc123` in the redirect.
-    
 - But they _don’t know the original `code_verifier`_, because that was generated and kept client-side.
-    
 - When they try to exchange `abc123` without the correct verifier, step (3) fails.
-    
 - Result: The stolen authorization code is useless.
 
 they don't know the code challenge, and the auth code is bound to the challenge
+
+## Browser redirects
+- The **Authorization Server** needs the user’s interaction (login + consent UI).
+- The **Client App** must not handle the credentials directly.
+- The browser (user-agent) mediates between them.
+- Credentials are never sent to client, only to the auth server over TLS
+
+## What is generated by what
+
+| Item                   | Generated by                                                         | Visibility / where it travels                                                                                      | Purpose                                                                                              | Safety?                                               |
+| ---------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Login page             | Hosted by auth server                                                | For user                                                                                                           | User interaction with browser                                                                        | Via TLS                                               |
+| code verifier          | Client, as a high-entropy random secret                              | Sent to auth server `/token`                                                                                       | Proves the same client that started login is the one redeeming the code<br>(part of PKCE)            |                                                       |
+| code challenge         | Client, derived from the code_verifier, usually with SHA-256 and b64 | Sent to the auth server in`/authorize`                                                                             | Lets the server bind the later code_verifier to the original authorization request<br>(part of PKCE) | One way hash of verifier                              |
+| authorization code<br> | auth server after user login/consent                                 | Sent through the browser redirect `?code=abc123`                                                                   | Short-lived code the client exchanges for tokens                                                     | Visible in browser redirect, useless without verifier |
+| access token           | auth server during the token exchange                                | Sent from auth server to client to `/token` <br><br><br>Stored in client, sent to  resource server in API requests | Authorizes API access to protected resources                                                         | It's meant to be seen                                 |
+| id token               | auth server, when using OIDC                                         | Sent to the client from the token endpoint, alongside or near the access token depending on the flow               | Conveys the user’s authentication identity claims to the client, not API authorization               | It's meant to be seen                                 |
 
 ## Authorization Code Flow With PKCE
 https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-pkce
 
 
-
-
 The auth code is generated from the params from the code challenge, to prevent replay attacks with the access token
 
-Public clients (SPAs, mobiles) cannot store CLIENT_SECRET securely
-PKCE Hardens authorization code exchange
-
-PKCE protects public clients (SPAs, mobile) by proving possession of a secret derived at runtime.
+- Public clients (SPAs, mobiles) cannot store CLIENT_SECRET securely
+- PKCE hardens authorization code exchange using challenge/verify to ensure auth code only works for the client
+- Prevents replay attacks
 
 - Client sends `code_challenge=BASE64URL(SHA256(code_verifier))` in auth request.
 - Exchanges auth code with `code_verifier` to redeem; server matches challenge.
@@ -138,14 +118,13 @@ PKCE protects public clients (SPAs, mobile) by proving possession of a secret de
 
 ![](<./assets/auth-sequence-auth-code-pkce.png>)
 
-See also: [[oauth2]] · [[questions/fullstack/cookies-vs-token-auth]]
+| Step                | Exchange        | Contains                                              |
+| ------------------- | --------------- | ----------------------------------------------------- |
+| 1. Auth Request     | Query params    | client_id, redirect_uri, scope, state, code_challenge |
+| 2. Auth Response    | Redirect params | code, state                                           |
+| 3. Token Request    | POST body       | code, redirect_uri, client_id, code_verifier          |
+| 4. Token Response   | JSON            | access_token, refresh_token, id_token, expires_in     |
+| 5. Resource Request | HTTP header     | Authorization: Bearer <access_token>                  |
+| 6. JWKS Fetch       | JSON            | Public keys (n, e, kid, alg)                          |
+| 7. Refresh Request  | POST body       | grant_type=refresh_token, refresh_token               |
 
-|Step|Exchange|Contains|
-|---|---|---|
-|1. Auth Request|Query params|client_id, redirect_uri, scope, state, code_challenge|
-|2. Auth Response|Redirect params|code, state|
-|3. Token Request|POST body|code, redirect_uri, client_id, code_verifier|
-|4. Token Response|JSON|access_token, refresh_token, id_token, expires_in|
-|5. Resource Request|HTTP header|Authorization: Bearer <access_token>|
-|6. JWKS Fetch|JSON|Public keys (n, e, kid, alg)|
-|7. Refresh Request|POST body|grant_type=refresh_token, refresh_token|

@@ -1,7 +1,8 @@
 
-Also see: https://github.com/alex/what-happens-when?tab=readme-ov-file#html-parsing
+Do see: https://github.com/alex/what-happens-when
 
 
+[Image credit](https://xcancel.com/manekinekko/status/1281704000572858375)
 ![697](<./assets/media_FmXEahEXEAEBd_Z.jpg>)
 ## 1. **Parsing the URL**
 - The browser breaks down the URL into components:

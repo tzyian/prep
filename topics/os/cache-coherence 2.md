@@ -45,13 +45,15 @@
 ---
 
 ### Diagram (simplified)
+```
+
 Core0 L1/L2 ──┐  
 Core1 L1/L2 ──┤── Shared L3 ──┐  
-Core2 L1/L2 ──┘ │  
-▼  
-Memory Controller  
-│  
-[ Interconnect Link ]  
-│  
-Another Socket (Node) with its own cores + memory
-
+Core2 L1/L2 ──┘               │  
+							  ▼  
+		    		   Memory Controller  
+							  │  
+			    	[ Interconnect Link ]  
+							  │  
+		Another Socket (Node) with its own cores + memory
+```

@@ -1,4 +1,4 @@
-## Mutex vs Semaphore vs Condition Variable
+## Mutex vs Semaphore vs Condition Variable (Monitors)
 
 - **Mutex (mutual exclusion lock)**: guards a *critical section* so only one thread enters at a time.
 	- Ownership: thread that locks must unlock.
@@ -85,8 +85,6 @@ while (true)
 3. **Broadcasts and Interruption**
    - A `pthread_cond_broadcast` (or similar) wakes all waiting threads; not all of them will find the condition true.
    - External factors like **timeouts, cancellation, or interrupts** can also cause premature wakeups.
-
-
 
 
 
