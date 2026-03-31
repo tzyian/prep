@@ -168,10 +168,10 @@ def legacy_coro():
 ## Threadpool
 
 # Key facts:
-- ThreadPoolExecutor/ProcessPoolExecutor within 'with' uses shutdown(wait=True) at exit.
+- `ThreadPoolExecutor`/`ProcessPoolExecutor` within 'with' uses `shutdown(wait=True)` at exit.
 - Exiting the 'with' blocks until all submitted tasks finish (unless you manually `shutdown(wait=False)`).
-- Calling future.result() blocks until that future completes.
-- asyncio.run(coro) blocks the current thread until 'coro' completes; it also cancels remaining pending tasks in that created loop before closing.
+- Calling `future.result()` blocks until that future completes.
+- `asyncio.run(coro)` blocks the current thread until `coro` completes; it also cancels remaining pending tasks in that created loop before closing.
 
 ```python
 # =========================
@@ -213,9 +213,9 @@ async def main_run_block_demo():
 
 
 ## PyTorch
- torch.nn.Module overrides __call__ to:
+ `torch.nn.Module` overrides __call__ to:
   - run pre-hooks
-  - dispatch to .forward(*args, **kwargs)
+  - dispatch to `.forward(*args, **kwargs)`
   - run post-hooks
  This enables modules to be called like functions.
 

@@ -53,6 +53,14 @@ void* signaler(void* _) {
 }
 ```
 
+```c++
+std::unique_lock lock{mut};
+while (true)
+    cond.wait(lock);
+// equivalent to
+// cond.wait(lock, [this](){ return !condition;}
+```
+
 
 1. **Spurious wakeup case**:  
    - POSIX explicitly allows that a thread may return from `pthread_cond_wait` **even without a signal**.  

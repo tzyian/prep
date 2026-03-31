@@ -9,7 +9,7 @@ Packet-switching: hosts break application-layer messages into packets
 A **router** forwards packets from one network to another
 
 
-![[Pasted image 20250926023522.png]]
+![[./assets/Pasted image 20250926023522.png]]
 
 **Packet Forwarding**
 **Packet Routing**
@@ -28,14 +28,16 @@ Control plane:
 
 
 ### Router architecture
-![[Pasted image 20250926213116.png]]
+
+
+![[./assets/Pasted image 20250926213116.png]]
 Switching fabric
 - transfer pkt from input link to correct output link
 - switching rate: rate at which pkts transfer
 - interconnect is the most useful e.g. mxn switch
-- ![[Pasted image 20250926214358.png]]
-![[Pasted image 20250926213140.png]]
-![[Pasted image 20250926220751.png]]
+- ![[./assets/Pasted image 20250926214358.png]]
+![[./assets/Pasted image 20250926213140.png]]
+![[./assets/Pasted image 20250926220751.png]]
 
 #### Packet scheduling
 (From buffer to link)
@@ -45,13 +47,13 @@ Switching fabric
 - weighted fair queuing (weighted round robin)
 
 ### Network layer functions
-![[Pasted image 20250926221531.png]]
+![[./assets/Pasted image 20250926221531.png]]
 
 
 ### IPv4 Datagram Format
-![[Pasted image 20250926221545.png]]
+![[./assets/Pasted image 20250926221545.png]]
 
-### IPv6 Datagram ![[Pasted image 20250926224732.png]]
+### IPv6 Datagram ![[./assets/Pasted image 20250926224732.png]]
 IPv6 datagrams are carried in IPv4 datagram in IPv4 routers (IPv4 tunnelling)
 
 ### Subnets
@@ -75,14 +77,14 @@ IPv6 datagrams are carried in IPv4 datagram in IPv4 routers (IPv4 tunnelling)
 - A network is allocated a portion of the provider ISP's space
 
 ### Hierarchical Addressing
-![[Pasted image 20250927075535.png]]
+![[./assets/Pasted image 20250927075535.png]]
 
 ### Network Address Translation
 1. All devices in local network share 1 IPv4 addr
 2. This IPv4 is NAT to the local network IP addr
 3. Router must be able to replace ingoing and outgoing packets with corresponding external IPv4 and NAT IP addr
 
-![[Pasted image 20250926224617.png]]
+![[./assets/Pasted image 20250926224617.png|342]]
 
 
 
@@ -123,14 +125,14 @@ Routing Algorithms
 - each router has full topology, uses Dijkstra’s algorithm to compute forwarding table
 - intra-ISP, so smaller range, can use full topo
 - two level hierarchy (local area, backbone)
-![[Pasted image 20250927091015.png]]
+![[./assets/Pasted image 20250927091015.png]]
 
 ### Inter-ISP: Border Gateway Protocol (BGP) routing
 - advertise to neighbouring networks its reachability
 
 ### SDN Control Plane
-![[Pasted image 20250927121449.png]]
-![[Pasted image 20250927121606.png]]
+![[./assets/Pasted image 20250927121449.png]]
+![[./assets/Pasted image 20250927121606.png]]
 ### Internet Control Message Protocol (ICMP)
 - used by hosts and routers to communicate network-level information
 	- error reporting: unreachable host, network, port, protocol

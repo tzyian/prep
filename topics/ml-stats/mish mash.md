@@ -80,6 +80,7 @@ VIF
 	- time until next event in Poisson process
 - Gamma
 - Weibull
+- Beta
 
 **Tests**
 - t-test
@@ -103,6 +104,11 @@ Probability vs Likelihood
 - L2 norm = squared value penalty
 - $J(\beta)=\lVert y-X\beta \rVert_2^2+\lambda\lVert\beta\rVert^2_2$
 - $\hat{\beta}_{ridge}=(X^TX+\lambda I)^-1X^Ty$
+
+Basis functions to transform features into linear features
+
+Multivariate Regression
+
 
 
 ANOVA
@@ -151,8 +157,16 @@ ARMA, ARIMA, SARIMA,
 
 # Machine Learning
 Bias-Variance tradeoff
-- bias from underfitting
-- variance overfitting
+- bias from underfitting 
+- variance overfitting (recall )
+
+(Bessel correction). Recall how MLE gives potentially biased or unbiased estimate, but correction (e.g. in 1-var case: $Var(aX)=a^2Var(X)$ can result in higher variance
+
+Softmax
+
+
+
+Maximum 
 
 SGD
 
@@ -222,7 +236,8 @@ Markov Models
 
 RLHF
 
-KL Divergence
+**KL Divergence**
+Used to measure the similarity between different 
 
 Explainability (SHAP, LIME)
 Data Drift ,Model decay
@@ -230,4 +245,28 @@ Data Drift ,Model decay
 Discrete Markov
 Continuous Markov
 
+MCMC
+
 POMDP
+
+Lagrangian Optimisation
+
+KKT Conditions
+
+
+
+
+Multi Armed Bandits
+
+Gaussian Mixture Models
+
+Expectation Maximisation
+
+Copulas
+
+
+Q Learning
+
+PPO
+
+

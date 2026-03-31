@@ -1,4 +1,8 @@
-**![[media_FmXEahEXEAEBd_Z.jpg]]**
+
+Also see: https://github.com/alex/what-happens-when?tab=readme-ov-file#html-parsing
+
+
+![[media_FmXEahEXEAEBd_Z.jpg|697]]
 ## 1. **Parsing the URL**
 - The browser breaks down the URL into components:
     - **Scheme/protocol** → e.g., `http://` or `https://`

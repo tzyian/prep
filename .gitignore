@@ -1,5 +1,6 @@
 behavioural/
-.obsidian
+.obsidian/
 projects/
 curation
-
+.obsidian.vimrc
+Sandbox.md

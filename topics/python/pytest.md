@@ -223,7 +223,3 @@ def test_patch_with_unittest_patch():
         assert compute() == 2000
 ```
 
-
-
-```python
-```
