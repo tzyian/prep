@@ -12,5 +12,5 @@ How does 2PL ensure serializability and what are its downsides?
 - Granularity: row/page/table; intention locks enable hierarchy.
 
 ## Follow‑ups
-- Compare to [[mvcc]] for read/write contention.
+- Compare to [mvcc](<./mvcc.md>) for read/write contention.
 

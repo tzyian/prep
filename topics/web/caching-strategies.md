@@ -35,5 +35,5 @@ Cache-aside read: GET k -> miss -> DB -> set k (TTL)
 - Strategy choice · TTL/eviction · stampede protection · invalidation path
 
 ## Sources
-- [[http-caching]] · [[consistency-models]]
+- [http-caching](<./http-caching.md>) · [consistency-models](<../distributed-systems/consistency-models.md>)
 

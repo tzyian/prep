@@ -38,5 +38,5 @@ SELECT balance FROM acct WHERE id=1; -- 50
 - Anomaly definitions · vendor differences (MySQL vs Postgres) · MVCC vs 2PL basics
 
 ## Sources
-- [[transactions-isolation]] · [[mvcc]] · [[two-phase-locking]]
+- [[transactions-isolation]] · [mvcc](<./mvcc.md>) · [two-phase-locking](<./two-phase-locking.md>)
 

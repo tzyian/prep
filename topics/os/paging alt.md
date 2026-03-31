@@ -1,14 +1,14 @@
 # Paging in Operating Systems
 
 
-![[Pasted image 20251002125121.png]]
+![](<./assets/Pasted image 20251002125121.png>)
 
 TLB is the cache
 
 
 
 
-![[Pasted image 20251002124729.png]]
+![](<./assets/Pasted image 20251002124729.png>)
 
 ## 1. What is Paging?
 - **Paging** is a memory management technique where:

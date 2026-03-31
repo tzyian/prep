@@ -40,7 +40,7 @@ Why possible
 
 
 
-![[Tcp-vs-quic-handshake.svg.png]]
+![](<./assets/Tcp-vs-quic-handshake.svg.png>)
 
 
 | Aspect                 | **TCP + TLS 1.3 (HTTP/2)**                                        | **QUIC + TLS 1.3 (HTTP/3)**              |

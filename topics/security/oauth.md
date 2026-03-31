@@ -98,7 +98,7 @@ API takes JWKS public key and runs JWT `algo` to see if the JWT signature is aut
 7. **Client → Resource Server**  
 	    - Uses **Access Token** in `Authorization: Bearer` header.
 8. **Resource Server → Client**  
-	- Verifies token (via **[[#JSON Web Key Set (JWKS))]]**) and serves resource.
+	- Verifies token (via **[oauth](<#JSON Web Key Set (JWKS))>)**) and serves resource.
 9. **Client → Auth Server**  (Token exchange in POST body)
 	Sent (POST body):
 		- `grant_type=refresh_token`
@@ -136,7 +136,7 @@ PKCE protects public clients (SPAs, mobile) by proving possession of a secret de
 - Exchanges auth code with `code_verifier` to redeem; server matches challenge.
 - Prevents code interception from being reused.
 
-![[auth-sequence-auth-code-pkce.png]]
+![](<./assets/auth-sequence-auth-code-pkce.png>)
 
 See also: [[oauth2]] · [[questions/fullstack/cookies-vs-token-auth]]
 

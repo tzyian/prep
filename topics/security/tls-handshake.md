@@ -29,5 +29,5 @@ ClientHello → ServerHello/Cert → [Finished] ↔ [Encrypted traffic]
 
 ## Sources
 - RFC 8446 TLS 1.3
-- [[websockets-security]]
+- [websockets-security](<../web/websockets-security.md>)
 

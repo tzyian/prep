@@ -12,5 +12,5 @@ WAL records intended changes to a durable log before applying them to data pages
 - ARIES: steal/no‑force buffer policy enables high throughput with redo/undo logging.
 
 ## Follow‑ups
-- Relation to [[aries-recovery]] and 2PC commit records.
+- Relation to [aries-recovery](<./aries-recovery.md>) and 2PC commit records.
 

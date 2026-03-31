@@ -6,7 +6,7 @@ ByteByteGo LSM Trees
 https://www.youtube.com/watch?v=I6jB0nM9SKU
 
 LSM Trees
-![[Pasted image 20260118173124.png]]
+![](<./assets/Pasted image 20260118173124.png>)
 
 1. Write to a MemTable
 	1. for batched flushes
@@ -19,7 +19,7 @@ LSM Trees
 5. Bloom filters on every level to check if a value exists
 6. 
 
-![[Pasted image 20260118173447.png]]
+![](<./assets/Pasted image 20260118173447.png>)
 
 Summary Tables to find the min and max value of a key
 Bloom filter(s) for existence-checking (True Positives, False Positives, and True Negatives)

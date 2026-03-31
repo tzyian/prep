@@ -4,7 +4,7 @@ tldr tldr
 ```
 
 # Networks
-See also network [[tools]]
+See also network [tools](<./networks/tools.md>)
 ```sh
 tcpdump -i any port 80 # inspect traffic on port 80
 ss -tulp # show listening ports and PIDs
@@ -44,8 +44,8 @@ find . -maxdepth 1 -type f | wc -l # count files within dir
 
 # htop
 [Image credits](https://codeahoy.com/2017/01/20/hhtop-explained-visually/)
-![[Pasted image 20260330161939.png]]
-![[Pasted image 20260330161946.png]]
+![](<./assets/Pasted image 20260330161939.png>)
+![](<./assets/Pasted image 20260330161946.png>)
 
 # jq
 ```bash
@@ -133,7 +133,7 @@ nmap/rustscan
 
 [Image source](https://gist.github.com/tuxfight3r/60051ac67c5f0445efee)
 
-![[Pasted image 20260330171332.png]]
+![](<./assets/Pasted image 20260330171332.png>)
 
 
 | Description                                        | Command                                |

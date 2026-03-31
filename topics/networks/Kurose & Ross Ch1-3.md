@@ -2,16 +2,16 @@
 # Ch1 Introduction
 
 
-![[Pasted image 20250926024621.png]]
+![](<./assets/Pasted image 20250926024621.png>)
 Frequency Division Multiplexing
 Time Division Multiplexing
 
 Internet Exchange Point
-![[Pasted image 20250926024747.png]]
+![](<./assets/Pasted image 20250926024747.png>)
 
 
 Packet Delay:
-![[Pasted image 20250926024842.png]]
+![](<./assets/Pasted image 20250926024842.png>)
 Nodal delay = 
 - Processing Delay: checking bit errors
 - Queuing Delay: waiting for output link
@@ -44,7 +44,7 @@ Packet delay = arrival rate * pk length / link bandwidth
 4. **link**: data transfer between neighboring  network elements
 	- Ethernet, 802.11 (WiFi), PPP
 5. **physical**: bits “on the wire”
-![[Pasted image 20250926025736.png]]
+![](<./assets/Pasted image 20250926025736.png>)
 
 # Ch2 Application Layer
 Requirements
@@ -77,12 +77,12 @@ Non-persistent HTTP Workflow
 6. Client sends request with URL into TCP connection socket for `hostname/path.index`
 7. Server receives request, sends response
 
-![[Pasted image 20250926042323.png]]
-![[Pasted image 20250926042605.png]]
+![](<./assets/Pasted image 20250926042323.png>)
+![](<./assets/Pasted image 20250926042605.png>)
 
 ### State
 Cookies stored on user's browser
-![[Pasted image 20250926044156.png]]
+![](<./assets/Pasted image 20250926044156.png>)
 ### Caches
 browser caches with HTTP 304
 
@@ -98,12 +98,12 @@ browser caches with HTTP 304
 application protocol on top of UDP
 - reliability, congestion control, authentication, encryption, state 
 - established in one RTT
-![[Pasted image 20250926044649.png]]
-![[Pasted image 20250926044712.png]]
+![](<./assets/Pasted image 20250926044649.png>)
+![](<./assets/Pasted image 20250926044712.png>)
 
 ### Email
 SMTP Handshaking
-![[Pasted image 20250926045810.png]]
+![](<./assets/Pasted image 20250926045810.png>)
 
 | SMTP                              | HTTP                                  |
 | --------------------------------- | ------------------------------------- |
@@ -116,7 +116,7 @@ SMTP Handshaking
 ### DNS (Domain Name System)
 - hostname-to-IP-address translation
 - client queries root DNS server, then TLD, then authoritative server
-- ![[Pasted image 20250926113711.png]]
+- ![](<./assets/Pasted image 20250926113711.png>)
 
 ### DNS Records
 distributed database storing resource records (RR)
@@ -130,7 +130,7 @@ RR format: `(name, value, type, ttl)`
 | CNAME | alias name for canonical name<br>e.g. ibm.com | canonical name<br>e.g. servereast.ibm.com |
 | MX    | name                                          | SMTP mail server associated with name     |
 
-![[Pasted image 20250926114535.png]]
+![](<./assets/Pasted image 20250926114535.png>)
 
 - to register a DNS, 
 	- register at DNS registrar
@@ -186,11 +186,11 @@ Client:
 | full duplex data flow             |                                                                      |
 
 ## UDP Datagram Structure
-![[Pasted image 20250926160731.png]]
+![](<./assets/Pasted image 20250926160731.png>)
 UDP uses weak 1's complement addition checksum
 
 #### TCP Segment Structure
-![[Pasted image 20250926161125.png]]
+![](<./assets/Pasted image 20250926161125.png>)
 
 1. Sender gets an application layer message
 2. Determines segment header fields
@@ -253,7 +253,7 @@ UDP uses weak 1's complement addition checksum
 - TCP Receiver advertises free buffer space in rwnd field in TCP header
 
 ### TCP 3 Way Handshake
-![[Pasted image 20250926164246.png]]
+![](<./assets/Pasted image 20250926164246.png>)
 
 Closing a TCP connection:
 - client, server each close their side of connection
@@ -265,13 +265,13 @@ Closing a TCP connection:
 ### Network Assisted Congestion Control
 - routers feedback to senders/receivers with congestion level
 - congestion window (CWND).
-- ![[Pasted image 20250926164654.png]]
+- ![](<./assets/Pasted image 20250926164654.png>)
 - **Algorithms**
 - increase TCP send rate until packet loss occurs at **bottleneck link**
 - TCP Rate = cwnd/RTT bytes/sec\
 	- Additive increase Multiplicative Decrease (sawtooth probing)
 	- TCP Cubic
 	- TCP Reno
-	- ![[Pasted image 20250926164847.png]]
+	- ![](<./assets/Pasted image 20250926164847.png>)
 - 
 

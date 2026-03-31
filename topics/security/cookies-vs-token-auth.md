@@ -29,5 +29,5 @@ Set-Cookie: sid=abc; HttpOnly; Secure; SameSite=Lax
 
 ## Sources
 - OAuth2 RFCs, OIDC Core
-- [[oauth2]] · [[oauth]]
+- [[oauth2]] · [oauth](<./oauth.md>)
 

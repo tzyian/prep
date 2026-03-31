@@ -33,5 +33,5 @@ data: {"price": 10}
 
 ## Sources
 - MDN Web Docs
-- [[websockets-security]]
+- [websockets-security](<./websockets-security.md>)
 

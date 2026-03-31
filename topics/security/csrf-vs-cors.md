@@ -29,5 +29,5 @@ Set-Cookie: sid=...; SameSite=Lax; Secure
 
 ## Sources
 - MDN Web Docs on CSRF/CORS
-- [[rest-vs-rpc]]
+- [rest-vs-rpc](<../web/rest-vs-rpc.md>)
 

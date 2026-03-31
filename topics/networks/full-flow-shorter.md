@@ -1,4 +1,4 @@
-![[Pasted image 20250926025736.png]]
+![](<./assets/Pasted image 20250926025736.png>)
 1. Application payload, wrapped by TCP segment by OS, wrapped by IP datagram in OS
 2. Wrapped to Link frame by NIC
 3. Link layer WIFI/Ethernet switches via MAC

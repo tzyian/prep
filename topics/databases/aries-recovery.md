@@ -12,5 +12,5 @@ ARIES uses steal/no‑force buffers with physiological logging. Recovery has thr
 - CLRs record undo actions to make recovery itself crash‑safe.
 
 ## Follow‑ups
-- How WAL [[wal]] and Strict 2PL simplify recovery.
+- How WAL [wal](<./wal.md>) and Strict 2PL simplify recovery.
 

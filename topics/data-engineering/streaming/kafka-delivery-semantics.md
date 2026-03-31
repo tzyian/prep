@@ -31,5 +31,5 @@ isolation.level=read_committed
 
 ## Sources
 - Kafka docs on transactions and idempotence
-- [[consistency-models]]
+- [consistency-models](<../../distributed-systems/consistency-models.md>)
 

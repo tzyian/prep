@@ -9,5 +9,5 @@ Lamport clocks assign a monotonically increasing scalar per event that preserves
 - Vector: merge element‑wise max; A ≤ B iff every component A[i] ≤ B[i] and one is strictly smaller.
 
 ## Follow‑ups
-- Use in [[consistency-models]] causal ordering.
+- Use in [consistency-models](<./consistency-models.md>) causal ordering.
 

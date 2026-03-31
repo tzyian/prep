@@ -10,10 +10,10 @@ A coordinator asks participants to prepare (vote) and then commit or abort. Atom
 - Phase 1: prepare; write intent/redo to log; lock resources.
 - Phase 2: commit/abort; participants acknowledge and release locks.
 - Failure: coordinator crash → blocking; participant crash → recovery via logs.
-- Mitigations: coordinator replication (e.g., [[raft]]), timeout + abort in practice.
+- Mitigations: coordinator replication (e.g., [raft](<./raft.md>)), timeout + abort in practice.
 
 ## Follow-ups
-- Contrast with [[transactions-isolation]] and [[mvcc]].
+- Contrast with [[transactions-isolation]] and [mvcc](<../databases/mvcc.md>).
 
 
 

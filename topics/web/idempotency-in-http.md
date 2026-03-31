@@ -35,5 +35,5 @@ PUT /users/123
 
 ## Sources
 - RFC 9110 HTTP Semantics
-- [[rest-vs-rpc]]
+- [rest-vs-rpc](<./rest-vs-rpc.md>)
 

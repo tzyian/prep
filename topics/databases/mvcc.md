@@ -12,7 +12,7 @@ MVCC keeps multiple versions of rows with commit timestamps; readers see a snaps
 - Serializable via SSI tracks dangerous structures to abort conflicts.
 
 ## Follow‑ups
-- Contrast with [[two-phase-locking]] and [[aries-recovery]].
+- Contrast with [two-phase-locking](<./two-phase-locking.md>) and [aries-recovery](<./aries-recovery.md>).
 
 
 

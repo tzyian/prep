@@ -1,8 +1,8 @@
 
 
-![[Pasted image 20251002124641.png]]
+![](<./assets/Pasted image 20251002124641.png>)
 
-![[Pasted image 20251002124522.png]]
+![](<./assets/Pasted image 20251002124522.png>)
 
 # FD Table, Open File Table, Vnode/Inode Table
 
