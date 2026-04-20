@@ -1,4 +1,3 @@
-
 | DB Type         | Schema Style             | Read Optimisation                         | Write Optimisation                    | Typical Use     |
 | --------------- | ------------------------ | ----------------------------------------- | ------------------------------------- | --------------- |
 | **OLTP**        | Normalised, row          | Indexes for point reads, ACID consistency | Fast single inserts/updates           | Banking, orders |

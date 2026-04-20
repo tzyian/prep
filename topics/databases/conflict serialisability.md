@@ -1,8 +1,6 @@
-Got it — you want to understand **conflict-serializability** in transaction theory. This is a core DB concurrency control concept that connects directly to Postgres’s `SERIALIZABLE` isolation level.
-
 ---
 
-# 🔹 Conflict Serializability
+# Conflict Serializability
 
 ## 1. **Serializability**
 
@@ -64,7 +62,7 @@ So conflicts are:
 
 ---
 
-## ✅ Summary
+## Summary
 
 - **Serializable** = same outcome as some serial order.
     

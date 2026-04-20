@@ -1,3 +1,6 @@
+# Example Kubernetes manifests
+```yaml
+```
 
 ```yaml
 # Namespace

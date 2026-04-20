@@ -1,4 +1,3 @@
-
 ## Transaction Isolation Levels
 - **READ UNCOMMITTED** → Dirty reads allowed (rarely supported).
 - **READ COMMITTED** → No dirty reads, but non-repeatable reads possible.

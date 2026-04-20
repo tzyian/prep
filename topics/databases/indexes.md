@@ -1,5 +1,12 @@
 # Database Indexes
 
+indexes are faster reads slower writes
+query optimisation is NP complete, indexing isn't always fast
+
+cf NoSQL indexes
+
+c.f. AWS Global Secondary Indexes (GSI)
+
 ## Question
 How do B+‑tree and hash indexes differ and when do you use each?
 
