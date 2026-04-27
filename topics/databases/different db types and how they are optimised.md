@@ -9,61 +9,50 @@ Here’s a structured comparison:
 
 ---
 
-## **Types of Databases**
+## Types of Databases
 
-### 1. **OLTP (Online Transaction Processing)**
+### 1. OLTP (Online Transaction Processing)
 
 - **Workload:** High volume of small read/write transactions. Examples: banking, e-commerce.
-    
+
 - **Optimised for:**
-    
     - **Writes:** Fast inserts/updates with ACID guarantees. Normalised schema to avoid anomalies. Use of indexes for point lookups.
-        
-    - **Reads:** Point queries (`WHERE id=…`). Optimised by B-trees, clustered indexes (the physical order data is stored), row-oriented storage.
-        
+    - **Reads:** Point queries (`WHERE id=…`). Optimised by B-trees, clustered indexes (physical row order), row-oriented storage.
+
 - **Tradeoff:** Not efficient for large scans/aggregations.
-    
 
 ---
 
-### 2. **OLAP (Online Analytical Processing)**
+### 2. OLAP (Online Analytical Processing)
 
 - **Workload:** Complex queries, aggregations, reporting. Examples: BI dashboards, analytics.
-    
+
 - **Optimised for:**
-    
-    - **Reads:** Columnar storage (Parquet, ORC). Compression, vectorised execution, bitmap indexes, star schemas. Scans billions of rows efficiently.
-        
-    - **Writes:** Bulk loads are efficient, but random writes/updates are costly. Data usually ingested in batches.
-        
-- **Tradeoff:** High throughput reads at the expense of update latency.
-    
+    - **Reads:** Columnar storage (Parquet, ORC). Compression, vectorised execution, bitmap indexes, star schemas for efficient scans.
+    - **Writes:** Bulk loads are efficient; random updates are costly. Data is usually ingested in batches.
+
+- **Tradeoff:** High-throughput reads at the expense of update latency.
 
 ---
 
-### 3. **Analytical Databases / Data Warehouses (Snowflake, Redshift, BigQuery)**
+### 3. Analytical Databases / Data Warehouses (Snowflake, Redshift, BigQuery)
 
-- **Workload:** Large-scale analytics, often SQL over TB-PB of data.
-    
+- **Workload:** Large-scale analytics, often SQL over TB–PB of data.
+
 - **Optimised for:**
-    
-    - **Reads:** Massive parallel processing (MPP), query pruning, caching hot aggregates, columnar + compressed storage.
-        
-    - **Writes:** Append-only batch loads. Updates/deletes are slower, often rewritten as new partitions.
-        
+    - **Reads:** MPP query execution, pruning, caching hot aggregates, columnar compressed storage.
+    - **Writes:** Append-only batch loads; updates/deletes are slower and often rewritten as new partitions.
+
 - **Tradeoff:** Great for BI/ML workloads, poor for OLTP-style workloads.
-    
 
 ---
 
-### 4. **Time-Series Databases (InfluxDB, TimescaleDB, Prometheus)**
+### 4. Time-Series Databases (InfluxDB, TimescaleDB, Prometheus)
 
-- **Workload:** Data indexed by timestamp (IoT sensors, monitoring). Heavy sequential writes, range queries by time.
-    
+- **Workload:** Data indexed by timestamp (IoT sensors, monitoring). Heavy sequential writes and time-range queries.
+
 - **Optimised for:**
-    
     - **Writes:** Fast sequential appends, compression (delta encoding, Gorilla), partitioning by time buckets.
-        
-    - **Reads:** Optimised for time-range scans, downsampling, retention policies, aggregates (`avg over last 5m`). Indexing on time + tags.
-        
+    - **Reads:** Optimised for time-range scans, downsampling, retention policies, and aggregates (`avg` over intervals). Indexing on time + tags.
+
 - **Tradeoff:** Limited support for complex joins or arbitrary queries.

@@ -63,7 +63,22 @@ See also: https://github.com/zhuohongwei/chinese-technical-terms
 审批 approval
 权限 permission
 
+
+
 ## Database
+ACID
+原子性 
+一致性
+隔离性
+持久性
+
+一致性
+可用性
+分区容错性
+CAP 三选二
+
+取捨（trade-off）
+
 数据库 database
 - 访问 access (O(1))  
 - 插入 insert (O(n))  
@@ -82,6 +97,16 @@ See also: https://github.com/zhuohongwei/chinese-technical-terms
 并发 concurrent
 序列化 serialisation
 同步/异步 sync/async
+
+微服务 microservice
+框架 framework
+吞吐量 Throughput
+
+浏览器 browser
+
+吞吐量（TPS）、QPS、并发数、响应时间（RT）
+
+
 
 内存 memory
 内核 kernel

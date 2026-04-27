@@ -38,6 +38,7 @@
 
 #### Diagram:
 
+```
 Browser → OS Cache → Recursive Resolver  
 ↓  
 Root Servers  
@@ -47,7 +48,7 @@ TLD Servers (.com, .org)
 Authoritative DNS Server  
 ↓
 Final IP Returned
-
+```
 
 ---
 
