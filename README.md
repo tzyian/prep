@@ -6,7 +6,8 @@ To view in Obsidian, may require the plugin [Better Markdown Links](https://gith
 Some CS theory stuff for revision or interview prep
 
 Warning: quite a bit of content is AI generated; not everything is vetted
-Not everything has been filled in yet
+
+TODO: clean up AI slop
 
 
 # Topics
