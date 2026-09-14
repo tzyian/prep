@@ -98,6 +98,11 @@ See also: https://github.com/zhuohongwei/chinese-technical-terms
 | 废弃            | deprecate / marked as deprecated   |
 | 降级            | degradation (system load shedding) |
 | 限流            | rate limiting                      |
+| 上游/下游         | upstream/downstream                |
+| 黑名单、白名单       | blacklist，whitelist                |
+| 加白            | whitelist                          |
+| 命中率           | hitrate                            |
+| 落（消息）         | logging                            |
 
 ## comms
 
